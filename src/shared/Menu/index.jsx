@@ -10,6 +10,7 @@ const Menu = ({ items }) => {
       {items.map(item => (
         <li key={item.id} className="Menu-item">
           <NavLink
+            exact={item.exact || false}
             className="Menu-link"
             activeClassName="Menu-link--active"
             to={item.path}>
