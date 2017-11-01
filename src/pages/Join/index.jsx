@@ -1,10 +1,25 @@
 import React, { Component } from 'react';
-import { Route, NavLink } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 import Signin from './components/Signin';
 import Signup from './components/Signup';
 
+import Menu from './../../shared/Menu';
+
 import './index.css';
+
+const items = [
+  {
+    id: 'menu-join-signin',
+    path: '/join/signin',
+    text: 'Signin',
+  },
+  {
+    id: 'menu-join-signup',
+    path: '/join/signup',
+    text: 'Signup',
+  },
+];
 
 export class Join extends Component {
   render() {
@@ -12,16 +27,7 @@ export class Join extends Component {
       <div className="Join">
         <h1>Join</h1>
 
-        <ul className="Menu">
-          <li className="Menu-item">
-            <NavLink style={{ margin: '.5em' }} to="/join/signin">
-              Signin
-            </NavLink>
-            <NavLink style={{ margin: '.5em' }} to="/join/signup">
-              Signup
-            </NavLink>
-          </li>
-        </ul>
+        <Menu items={items} />
 
         <div className="Join-forms">
           <Route path="/join/signin" component={Signin} />

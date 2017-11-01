@@ -1,12 +1,31 @@
 import React, { Component } from 'react';
-import { Route, NavLink } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 import Tracks from './containers/Tracks';
 import Playlists from './containers/Playlists';
 import Users from './containers/Users';
 
+import Menu from './../../shared/Menu';
+
 import './index.css';
 
+const items = [
+  {
+    id: 'menu-results-tracks',
+    path: '/results/tracks',
+    text: 'Tracks',
+  },
+  {
+    id: 'menu-results-playlists',
+    path: '/results/playlists',
+    text: 'Playlists',
+  },
+  {
+    id: 'menu-results-users',
+    path: '/results/users',
+    text: 'Users',
+  },
+];
 export class Results extends Component {
   renderRoutes() {
     // const { match, query } = this.props;
@@ -27,26 +46,7 @@ export class Results extends Component {
   render() {
     return (
       <div className="Results">
-        <div className="Menu" style={{ padding: '1em' }}>
-          <NavLink
-            className="Menu-link"
-            activeClassName="Menu-link--active"
-            to="/results/tracks">
-            Go to Results Tracks
-          </NavLink>
-          <NavLink
-            className="Menu-link"
-            activeClassName="Menu-link--active"
-            to="/results/playlists">
-            Go to Results Playlists
-          </NavLink>
-          <NavLink
-            className="Menu-link"
-            activeClassName="Menu-link--active"
-            to="/results/users">
-            Go to Results Users
-          </NavLink>
-        </div>
+        <Menu items={items} />
 
         {this.renderRoutes()}
       </div>
