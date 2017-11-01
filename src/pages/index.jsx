@@ -20,8 +20,8 @@ const Pages = () => {
       <Route path="/playlists/:id" component={PlaylistDetail} />
       <Route path="/users/:id" component={UserDetail} />
       <Route path="/join/:filter?" component={Join} />
-      <Route exact path="/me/:filter?" component={Collection} />
-      <Route path="/me/edit" component={UserForm} />
+      <Route exact path="/me/edit" component={UserForm} />
+      <Route path="/me/:filter?" component={Collection} />
       <Route component={Error404} />
     </Switch>
   );
