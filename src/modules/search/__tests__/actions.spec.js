@@ -57,4 +57,15 @@ describe('action creators', () => {
       expectedAction
     );
   });
+
+  it('should create an action to set if is fetching or not', () => {
+    // filter can be tracks, playlists and users
+    const filter = 'tracks';
+    const expectedAction = {
+      type: actionTypes.FETCH_RESOURCE_REQUEST,
+      payload: { filter },
+    };
+
+    expect(actions.requestResource(filter)).toEqual(expectedAction);
+  });
 });

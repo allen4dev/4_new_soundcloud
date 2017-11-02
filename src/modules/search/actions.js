@@ -15,4 +15,11 @@ export function setResults(filter, result, nextPage) {
   };
 }
 
+export function requestResource(filter) {
+  return {
+    type: actionTypes.FETCH_RESOURCE_REQUEST,
+    payload: { filter },
+  };
+}
+
 // Async actions

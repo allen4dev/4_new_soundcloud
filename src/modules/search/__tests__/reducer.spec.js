@@ -42,6 +42,7 @@ describe('createReducer: tracks, playlists, users', () => {
       expect(nextState).toEqual({
         ...INITIAL_STATE,
         tracks: {
+          ...INITIAL_STATE.tracks,
           results: result,
         },
       });
@@ -56,6 +57,7 @@ describe('createReducer: tracks, playlists, users', () => {
       expect(newState).toEqual({
         ...nextState,
         tracks: {
+          ...nextState.tracks,
           results: [...nextState.tracks.results, ...newResult],
         },
       });
@@ -73,6 +75,7 @@ describe('createReducer: tracks, playlists, users', () => {
       expect(nextState).toEqual({
         ...INITIAL_STATE,
         playlists: {
+          ...INITIAL_STATE.playlists,
           results: result,
         },
       });
@@ -87,6 +90,7 @@ describe('createReducer: tracks, playlists, users', () => {
       expect(newState).toEqual({
         ...nextState,
         playlists: {
+          ...nextState.playlists,
           results: [...nextState.playlists.results, ...newResult],
         },
       });
@@ -104,6 +108,7 @@ describe('createReducer: tracks, playlists, users', () => {
       expect(nextState).toEqual({
         ...INITIAL_STATE,
         users: {
+          ...INITIAL_STATE.users,
           results: result,
         },
       });
@@ -118,6 +123,7 @@ describe('createReducer: tracks, playlists, users', () => {
       expect(newState).toEqual({
         ...nextState,
         users: {
+          ...nextState.users,
           results: [...nextState.users.results, ...newResult],
         },
       });
@@ -134,6 +140,7 @@ describe('createReducer: tracks, playlists, users', () => {
       expect(stateOne).toEqual({
         ...INITIAL_STATE,
         tracks: {
+          ...INITIAL_STATE.tracks,
           results: tracksResult,
         },
       });
@@ -147,9 +154,11 @@ describe('createReducer: tracks, playlists, users', () => {
       expect(stateTwo).toEqual({
         ...stateOne,
         tracks: {
+          ...stateOne.tracks,
           results: tracksResult,
         },
         playlists: {
+          ...stateOne.playlists,
           results: playlistsResult,
         },
       });
@@ -163,13 +172,48 @@ describe('createReducer: tracks, playlists, users', () => {
       expect(stateThree).toEqual({
         ...stateTwo,
         tracks: {
+          ...stateTwo.tracks,
           results: tracksResult,
         },
         playlists: {
+          ...stateTwo.playlists,
           results: playlistsResult,
         },
         users: {
+          ...stateTwo.users,
           results: usersResult,
+        },
+      });
+    });
+  });
+
+  describe('fetching', () => {
+    it('should handle FETCH_RESOURCE_REQUEST', () => {
+      const filter = 'tracks';
+      const nextState = reducer(INITIAL_STATE, actions.requestResource(filter));
+
+      expect(nextState).toEqual({
+        ...INITIAL_STATE,
+        tracks: {
+          ...INITIAL_STATE.tracks,
+          fetching: true,
+        },
+      });
+    });
+
+    it('should handle FETCH_RESOURCE_SUCCESS', () => {
+      const filter = 'tracks';
+      const { result } = fixtures.getResponse(filter, 2);
+      const nextState = reducer(
+        INITIAL_STATE,
+        actions.setResults(filter, result, 'https://dumiepage.com')
+      );
+
+      expect(nextState).toEqual({
+        ...INITIAL_STATE,
+        tracks: {
+          results: result,
+          fetching: false,
         },
       });
     });
