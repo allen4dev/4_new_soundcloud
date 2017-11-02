@@ -40,6 +40,7 @@ const fixtures = {
       const newTrack = this.getTrack();
       const newPlaylist = this.getPlaylist();
       const newUser = this.getUser();
+
       tracks = { ...tracks, [newTrack.id]: newTrack };
       playlists = { ...playlists, [newPlaylist.id]: newPlaylist };
       users = { ...users, [newUser.id]: newUser };

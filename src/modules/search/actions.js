@@ -8,4 +8,11 @@ export function setQuery(query) {
   };
 }
 
+export function setResults(filter, result, nextPage) {
+  return {
+    type: actionTypes.FETCH_RESOURCE_SUCCESS,
+    payload: { filter, result, nextPage },
+  };
+}
+
 // Async actions
