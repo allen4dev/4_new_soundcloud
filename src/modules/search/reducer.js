@@ -19,7 +19,6 @@ function resultsReducer(filter) {
 
     switch (action.type) {
       case actionTypes.FETCH_RESOURCE_SUCCESS:
-        console.log(JSON.stringify(action, undefined, 2));
         return [...state, ...action.payload.result];
 
       default:
@@ -47,10 +46,27 @@ function fetchingReducer(filter) {
   };
 }
 
+function nextPageReducer(filter) {
+  return (state = INITIAL_STATE[filter].nextPage, action = {}) => {
+    if (!action.payload || action.payload.filter !== filter) {
+      return state;
+    }
+
+    switch (action.type) {
+      case actionTypes.FETCH_RESOURCE_SUCCESS:
+        return action.payload.nextPage;
+
+      default:
+        return state;
+    }
+  };
+}
+
 function createReducer(filter) {
   return combineReducers({
     results: resultsReducer(filter),
     fetching: fetchingReducer(filter),
+    nextPage: nextPageReducer(filter),
   });
 }
 

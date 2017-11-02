@@ -43,6 +43,7 @@ describe('createReducer: tracks, playlists, users', () => {
         ...INITIAL_STATE,
         tracks: {
           ...INITIAL_STATE.tracks,
+          nextPage,
           results: result,
         },
       });
@@ -59,72 +60,7 @@ describe('createReducer: tracks, playlists, users', () => {
         tracks: {
           ...nextState.tracks,
           results: [...nextState.tracks.results, ...newResult],
-        },
-      });
-    });
-
-    it('should handle playlists FETCH_RESOURCE_SUCCESS action', () => {
-      const filter = 'playlists';
-      const { result } = fixtures.getResponse(filter, 2);
-      const nextPage = 'https://api.soundcloud.com/playlists-next-page';
-      const nextState = reducer(
-        INITIAL_STATE,
-        actions.setResults(filter, result, nextPage)
-      );
-
-      expect(nextState).toEqual({
-        ...INITIAL_STATE,
-        playlists: {
-          ...INITIAL_STATE.playlists,
-          results: result,
-        },
-      });
-
-      const { result: newResult } = fixtures.getResponse(filter, 3);
-
-      const newState = reducer(
-        nextState,
-        actions.setResults(filter, newResult, nextPage)
-      );
-
-      expect(newState).toEqual({
-        ...nextState,
-        playlists: {
-          ...nextState.playlists,
-          results: [...nextState.playlists.results, ...newResult],
-        },
-      });
-    });
-
-    it('should handle users FETCH_RESOURCE_SUCCESS action', () => {
-      const filter = 'users';
-      const { result } = fixtures.getResponse(filter, 2);
-      const nextPage = 'https://api.soundcloud.com/users-next-page';
-      const nextState = reducer(
-        INITIAL_STATE,
-        actions.setResults(filter, result, nextPage)
-      );
-
-      expect(nextState).toEqual({
-        ...INITIAL_STATE,
-        users: {
-          ...INITIAL_STATE.users,
-          results: result,
-        },
-      });
-
-      const { result: newResult } = fixtures.getResponse(filter, 3);
-
-      const newState = reducer(
-        nextState,
-        actions.setResults(filter, newResult, nextPage)
-      );
-
-      expect(newState).toEqual({
-        ...nextState,
-        users: {
-          ...nextState.users,
-          results: [...nextState.users.results, ...newResult],
+          nextPage,
         },
       });
     });
@@ -141,6 +77,7 @@ describe('createReducer: tracks, playlists, users', () => {
         ...INITIAL_STATE,
         tracks: {
           ...INITIAL_STATE.tracks,
+          nextPage,
           results: tracksResult,
         },
       });
@@ -159,6 +96,7 @@ describe('createReducer: tracks, playlists, users', () => {
         },
         playlists: {
           ...stateOne.playlists,
+          nextPage,
           results: playlistsResult,
         },
       });
@@ -181,6 +119,7 @@ describe('createReducer: tracks, playlists, users', () => {
         },
         users: {
           ...stateTwo.users,
+          nextPage,
           results: usersResult,
         },
       });
@@ -204,9 +143,32 @@ describe('createReducer: tracks, playlists, users', () => {
     it('should handle FETCH_RESOURCE_SUCCESS', () => {
       const filter = 'tracks';
       const { result } = fixtures.getResponse(filter, 2);
+      const nextPage = 'https://dumiepage.com';
       const nextState = reducer(
         INITIAL_STATE,
-        actions.setResults(filter, result, 'https://dumiepage.com')
+        actions.setResults(filter, result, nextPage)
+      );
+
+      expect(nextState).toEqual({
+        ...INITIAL_STATE,
+        tracks: {
+          nextPage,
+          results: result,
+          fetching: false,
+        },
+      });
+    });
+  });
+
+  describe('nextPage', () => {
+    it('should handle FETCH_RESOURCE_SUCCESS', () => {
+      // filter can be tracks, playlists or users
+      const filter = 'tracks';
+      const { result } = fixtures.getResponse();
+      const nextPage = 'https://api.soundcloud.com/page-1';
+      const nextState = reducer(
+        INITIAL_STATE,
+        actions.setResults(filter, result, nextPage)
       );
 
       expect(nextState).toEqual({
@@ -214,6 +176,7 @@ describe('createReducer: tracks, playlists, users', () => {
         tracks: {
           results: result,
           fetching: false,
+          nextPage,
         },
       });
     });

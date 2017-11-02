@@ -68,4 +68,11 @@ describe('action creators', () => {
 
     expect(actions.requestResource(filter)).toEqual(expectedAction);
   });
+
+  // it('should create an action to set the nextPage', () => {
+  //   const nextPage = 'https://api.soundcloud.com/some-next-page';
+  //   const expectedAction = {
+  //     type: actionTypes.
+  //   }
+  // })
 });
