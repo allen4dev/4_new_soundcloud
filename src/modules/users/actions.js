@@ -7,4 +7,11 @@ export function setUsers(response) {
     response,
   };
 }
+
+export function setUser(response) {
+  return {
+    type: actionTypes.SET_USER,
+    response,
+  };
+}
 // Async actions

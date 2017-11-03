@@ -29,4 +29,25 @@ describe('entities', () => {
       },
     });
   });
+
+  it('should handle SET_USER action', () => {
+    const response = fixtures.getResponse();
+    const nextState = reducer(INITIAL_STATE, actions.setUser(response));
+
+    expect(nextState).toEqual({
+      ...INITIAL_STATE,
+      entities: response.entities.users,
+    });
+
+    const newResponse = fixtures.getResponse();
+    const newState = reducer(nextState, actions.setUser(newResponse));
+
+    expect(newState).toEqual({
+      ...nextState,
+      entities: {
+        ...nextState.entities,
+        ...newResponse.entities.users,
+      },
+    });
+  });
 });

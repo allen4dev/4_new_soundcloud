@@ -64,7 +64,7 @@ export function searchPlaylists(term) {
     } else {
       results = await api.playlists.getNextPage(nextPage);
     }
-    const results = await api.playlists.searchByTerm(term);
+
     const response = playlists.model.normalizedPlaylists(results.collection);
 
     dispatch(playlists.actions.setPlaylists(response));
@@ -86,7 +86,6 @@ export function searchUsers(term) {
       results = await api.users.getNextPage(nextPage);
     }
 
-    const results = await api.users.searchByTerm(term);
     const response = users.model.normalizedUsers(results.collection);
 
     dispatch(users.actions.setUsers(response));

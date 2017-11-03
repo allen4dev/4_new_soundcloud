@@ -13,4 +13,14 @@ describe('action creators', () => {
 
     expect(actions.setUsers(response)).toEqual(expectedAction);
   });
+
+  it('should create an action to set a single user', () => {
+    const response = fixtures.getResponse();
+    const expectedAction = {
+      type: actionTypes.SET_USER,
+      response,
+    };
+
+    expect(actions.setUser(response)).toEqual(expectedAction);
+  });
 });

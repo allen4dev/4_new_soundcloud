@@ -7,7 +7,7 @@ const fixtures = {
       username: 'Random username',
     };
   },
-  getResponse(n) {
+  getResponse(n = 1) {
     let users = {};
 
     while (n-- > 0) {
