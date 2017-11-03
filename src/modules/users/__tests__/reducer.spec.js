@@ -50,4 +50,39 @@ describe('entities', () => {
       },
     });
   });
+
+  it('should handle SET_USER_FOLLOWINGS action', () => {
+    const { id } = fixtures.getUser();
+    const followings = fixtures.getUserIds(5);
+    const nextState = reducer(
+      INITIAL_STATE,
+      actions.setUserFollowings(id, followings)
+    );
+
+    expect(nextState).toEqual({
+      ...INITIAL_STATE,
+      followings: {
+        ...INITIAL_STATE.followings,
+        byId: {
+          [id]: followings,
+        },
+      },
+    });
+
+    const newFollowings = fixtures.getUserIds(5);
+    const newState = reducer(
+      nextState,
+      actions.setUserFollowings(id, newFollowings)
+    );
+
+    expect(newState).toEqual({
+      ...nextState,
+      followings: {
+        ...nextState.followings,
+        byId: {
+          [id]: [...(nextState.followings.byId[id] || []), ...newFollowings],
+        },
+      },
+    });
+  });
 });

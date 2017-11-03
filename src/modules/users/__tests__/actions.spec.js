@@ -34,6 +34,17 @@ describe('action creators', () => {
 
     expect(actions.setUser(response)).toEqual(expectedAction);
   });
+
+  it('should create an action to set user followings', () => {
+    const { id } = fixtures.getUser();
+    const followings = fixtures.getRawUsers().map(user => user.id);
+    const expectedAction = {
+      type: actionTypes.SET_USER_FOLLOWINGS,
+      payload: { id, followings },
+    };
+
+    expect(actions.setUserFollowings(id, followings));
+  });
 });
 
 describe('async actions', () => {

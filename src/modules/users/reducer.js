@@ -16,8 +16,29 @@ function entitiesReducer(state = INITIAL_STATE.entities, action = {}) {
       return state;
   }
 }
+
+function byIdReducer(state = INITIAL_STATE.followings.byId, action = {}) {
+  if (action.type === actionTypes.SET_USER_FOLLOWINGS) {
+    return {
+      ...state,
+      [action.payload.id]: [
+        ...(state[action.payload.id] || []),
+        ...action.payload.followings,
+      ],
+    };
+  }
+
+  return state;
+}
+
+const followingsReducer = combineReducers({
+  byId: byIdReducer,
+  pagination: () => ({}),
+});
+
 const reducer = combineReducers({
   entities: entitiesReducer,
+  followings: followingsReducer,
 });
 
 export default reducer;

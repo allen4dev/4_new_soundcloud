@@ -18,6 +18,13 @@ export function setUser(response) {
   };
 }
 
+export function setUserFollowings(id, followings) {
+  return {
+    type: actionTypes.SET_USER_FOLLOWINGS,
+    payload: { id, followings },
+  };
+}
+
 // Async actions
 export function fetchUser(id) {
   return async dispatch => {

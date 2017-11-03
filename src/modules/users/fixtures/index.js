@@ -9,13 +9,17 @@ const fixtures = {
   },
 
   getRawUsers(n) {
-    let users = {};
+    let users = [];
 
     while (n-- > 0) {
       users.push(this.getUser());
     }
 
     return users;
+  },
+
+  getUserIds(n) {
+    return this.getRawUsers(n).map(user => user.id);
   },
 
   // Refactor
