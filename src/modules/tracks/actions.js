@@ -1,4 +1,7 @@
 import * as actionTypes from './actionTypes';
+import { normalizedTrack } from './model';
+
+import api from './../../utils/api';
 
 // Action creators
 export function setTracks(response) {
@@ -8,4 +11,21 @@ export function setTracks(response) {
   };
 }
 
+export function setTrack(response) {
+  return {
+    type: actionTypes.SET_TRACK,
+    response,
+  };
+}
+
 // Async actions
+export function fetchTrack(id) {
+  return async dispatch => {
+    const result = await api.tracks.getSingle(id);
+    const response = normalizedTrack(result);
+
+    dispatch(setTrack(response));
+
+    return result;
+  };
+}

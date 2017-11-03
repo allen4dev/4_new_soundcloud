@@ -11,7 +11,8 @@ const fixtures = {
       },
     };
   },
-  getResponse(n) {
+
+  getResponse(n = 1) {
     let tracks = {};
 
     while (n-- > 0) {
@@ -20,8 +21,11 @@ const fixtures = {
     }
 
     return {
-      entities: { tracks, playlists: { a: 'foo' }, users: { b: 'bam' } },
-      result: Object.keys(tracks),
+      entities: { tracks },
+      result:
+        Object.keys(tracks).length === 1
+          ? Object.keys(tracks)[0]
+          : Object.keys(tracks),
     };
   },
 };

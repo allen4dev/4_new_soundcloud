@@ -8,6 +8,10 @@ export function normalizedTracks(results) {
   return normalize(results, trackListSchema);
 }
 
+export function normalizedTrack(track) {
+  return normalize(track, trackSchema);
+}
+
 export const INITIAL_STATE = {
   entities: {},
 };

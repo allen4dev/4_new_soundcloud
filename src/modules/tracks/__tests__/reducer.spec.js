@@ -29,4 +29,28 @@ describe('entities', () => {
       },
     });
   });
+
+  it('should handle SET_TRACk', () => {
+    const response = fixtures.getResponse();
+    const nextState = reducer(INITIAL_STATE, actions.setTrack(response));
+
+    expect(nextState).toEqual({
+      ...INITIAL_STATE,
+      entities: {
+        ...INITIAL_STATE.entities,
+        ...response.entities.tracks,
+      },
+    });
+
+    const newResponse = fixtures.getResponse();
+    const newState = reducer(nextState, actions.setTrack(newResponse));
+
+    expect(newState).toEqual({
+      ...nextState,
+      entities: {
+        ...nextState.entities,
+        ...newResponse.entities.tracks,
+      },
+    });
+  });
 });

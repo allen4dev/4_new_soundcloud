@@ -6,6 +6,8 @@ import { INITIAL_STATE } from './model';
 function entitiesReducer(state = INITIAL_STATE.entities, action = {}) {
   switch (action.type) {
     case actionTypes.FETCH_TRACKS_SUCCESS:
+    // Refactor: can use the same FETCH_TRACKS_SUCCESS
+    case actionTypes.SET_TRACK:
       return {
         ...state,
         ...action.response.entities.tracks,
