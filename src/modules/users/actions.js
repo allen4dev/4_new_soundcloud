@@ -1,5 +1,5 @@
 import * as actionTypes from './actionTypes';
-import { normalizedUser } from './model';
+import { normalizedUser, normalizedUsers } from './model';
 
 import api from './../../utils/api';
 
@@ -34,5 +34,17 @@ export function fetchUser(id) {
     dispatch(setUser(response));
 
     return result;
+  };
+}
+
+export function fetchUserFollowings(id) {
+  return async dispatch => {
+    const results = await api.users.getFollowings(id);
+    const response = normalizedUsers(results.collection);
+
+    dispatch(setUsers(response));
+    dispatch(setUserFollowings(id, response.result));
+
+    return response.entities.users;
   };
 }
