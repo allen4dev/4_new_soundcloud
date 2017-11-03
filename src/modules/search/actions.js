@@ -30,10 +30,20 @@ export function requestResource(filter) {
 
 // Refactor
 // Async actions
+
 export function searchTracks(term) {
-  return async dispatch => {
+  return async (dispatch, getState) => {
+    const { nextPage } = getState().search.tracks;
+    let results;
+
     dispatch(requestResource('tracks'));
-    const results = await api.tracks.searchByTerm(term);
+
+    if (!nextPage) {
+      results = await api.tracks.searchByTerm(term);
+    } else {
+      results = await api.tracks.getNextPage(nextPage);
+    }
+
     const response = tracks.model.normalizedTracks(results.collection);
 
     dispatch(tracks.actions.setTracks(response));
@@ -43,8 +53,17 @@ export function searchTracks(term) {
 }
 
 export function searchPlaylists(term) {
-  return async dispatch => {
+  return async (dispatch, getState) => {
+    const { nextPage } = getState().search.playlists;
+    let results;
+
     dispatch(requestResource('playlists'));
+
+    if (!nextPage) {
+      results = await api.playlists.searchByTerm(term);
+    } else {
+      results = await api.playlists.getNextPage(nextPage);
+    }
     const results = await api.playlists.searchByTerm(term);
     const response = playlists.model.normalizedPlaylists(results.collection);
 
@@ -55,8 +74,18 @@ export function searchPlaylists(term) {
 }
 
 export function searchUsers(term) {
-  return async dispatch => {
+  return async (dispatch, getState) => {
+    const { nextPage } = getState().search.users;
+    let results;
+
     dispatch(requestResource('users'));
+
+    if (!nextPage) {
+      results = await api.users.searchByTerm(term);
+    } else {
+      results = await api.users.getNextPage(nextPage);
+    }
+
     const results = await api.users.searchByTerm(term);
     const response = users.model.normalizedUsers(results.collection);
 

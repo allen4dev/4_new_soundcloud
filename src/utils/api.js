@@ -20,6 +20,13 @@ const api = {
       return results;
     },
 
+    async getNextPage(nextPage) {
+      const response = await fetch(nextPage);
+      const tracks = await response.json();
+
+      return tracks;
+    },
+
     async getComments(id, limit = 10) {
       const url = `${baseURL}/tracks/${id}/comments?&limit=${limit}&linked_partitioning=1&client_id=${CLIENT_ID}`;
       const response = await fetch(url);
@@ -35,6 +42,7 @@ const api = {
 
       return favoriters;
     },
+
     // tags, genres
   },
 
@@ -54,6 +62,13 @@ const api = {
       const results = await response.json();
 
       return results;
+    },
+
+    async getNextPage(nextPage) {
+      const response = await fetch(nextPage);
+      const playlists = await response.json();
+
+      return playlists;
     },
 
     async getTracks(id, limit = 10) {
@@ -81,6 +96,13 @@ const api = {
       const results = await response.json();
 
       return results;
+    },
+
+    async getNextPage(nextPage) {
+      const response = await fetch(nextPage);
+      const users = await response.json();
+
+      return users;
     },
 
     async getTracks(id, limit = 12) {
