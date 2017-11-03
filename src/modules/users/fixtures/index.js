@@ -7,6 +7,18 @@ const fixtures = {
       username: 'Random username',
     };
   },
+
+  getRawUsers(n) {
+    let users = {};
+
+    while (n-- > 0) {
+      users.push(this.getUser());
+    }
+
+    return users;
+  },
+
+  // Refactor
   getResponse(n = 1) {
     let users = {};
 
@@ -14,10 +26,12 @@ const fixtures = {
       const newUser = this.getUser();
       users = { ...users, [newUser.id]: newUser };
     }
-
     return {
-      entities: { tracks: { a: 'foo' }, playlists: { b: 'bam' }, users },
-      result: Object.keys(users),
+      entities: { users },
+      result:
+        Object.keys(users).length === 1
+          ? Object.keys(users)[0]
+          : Object.keys(users),
     };
   },
 };

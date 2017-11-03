@@ -121,9 +121,6 @@ xdescribe('async actions', () => {
 
     await store.dispatch(actions.searchTracks(term));
 
-    console.log(JSON.stringify(store.getActions(), undefined, 2));
-    console.log(JSON.stringify(expectedActions, undefined, 2));
-
     expect(store.getActions()).toEqual(expectedActions);
   });
 });

@@ -4,6 +4,10 @@ import { schema, normalize } from 'normalizr';
 export const userSchema = new schema.Entity('users');
 export const userListSchema = [userSchema];
 
+export function normalizedUser(user) {
+  return normalize(user, userSchema);
+}
+
 export function normalizedUsers(results) {
   return normalize(results, userListSchema);
 }

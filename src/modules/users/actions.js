@@ -1,4 +1,7 @@
 import * as actionTypes from './actionTypes';
+import { normalizedUser } from './model';
+
+import api from './../../utils/api';
 
 // Action creators
 export function setUsers(response) {
@@ -14,4 +17,15 @@ export function setUser(response) {
     response,
   };
 }
+
 // Async actions
+export function fetchUser(id) {
+  return async dispatch => {
+    const result = await api.users.getSingle(id);
+    const response = normalizedUser(result);
+
+    dispatch(setUser(response));
+
+    return result;
+  };
+}
