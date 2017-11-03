@@ -20,7 +20,7 @@ const api = {
       return results;
     },
 
-    getComments(id, limit = 10) {
+    async getComments(id, limit = 10) {
       const url = `${baseURL}/tracks/${id}/comments?&limit=${limit}&linked_partitioning=1&client_id=${CLIENT_ID}`;
       const response = await fetch(url);
       const results = await response.json();
@@ -57,12 +57,12 @@ const api = {
     },
 
     async getTracks(id, limit = 10) {
-      const url = `${baseURL}/playlists/${id}/tracks?limit=${limit}&linked_partitioning=1&client_id=${CLIENT_ID}`
+      const url = `${baseURL}/playlists/${id}/tracks?limit=${limit}&linked_partitioning=1&client_id=${CLIENT_ID}`;
       const response = await fetch(url);
       const results = await response.json();
 
       return results;
-    }
+    },
   },
 
   users: {
@@ -122,7 +122,7 @@ const api = {
 
       return results;
     },
-  }
+  },
 };
 
 export default api;
