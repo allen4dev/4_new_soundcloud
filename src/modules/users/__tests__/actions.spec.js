@@ -128,7 +128,7 @@ describe('async actions', () => {
     expect(store.getActions()).toEqual(expectedActions);
   });
 
-  it('should create SET_RESOURCES after fetchUserPlaylists actions', async () => {
+  it('should create SET_RESOURCES after fetchUserPlaylists action', async () => {
     const { id } = fixtures.getUser();
     const nextPage = `${baseURL}/dummie-page-1`;
     const response = fixtures.getPlaylistsResponse(2);
@@ -152,6 +152,35 @@ describe('async actions', () => {
     });
 
     await store.dispatch(actions.fetchUserPlaylists(id));
+
+    expect(store.getActions()).toEqual(expectedActions);
+  });
+
+  it('should create FETCH_USER_SUCCESS and SET_RESOURCES after fetchUserFollowers action', async () => {
+    const { id } = fixtures.getUser();
+    const filter = 'followers';
+    const response = fixtures.getResponse(2);
+    const rawResponse = Object.values(response.entities.users);
+    const nextPage = `${baseURL}/users/followers/dummie-next-page`;
+    const url = `${baseURL}/users/${id}/followers?limit=12&linked_partitioning=1&client_id=${clientID}`;
+
+    const expectedActions = [
+      {
+        type: actionTypes.FETCH_USERS_SUCCESS,
+        response,
+      },
+      {
+        type: actionTypes.SET_RESOURCES,
+        payload: { id, filter, result: response.result, nextPage },
+      },
+    ];
+
+    fetchMock.getOnce(url, {
+      body: { collection: rawResponse, next_href: nextPage },
+      headers: { 'content-type': 'application/json' },
+    });
+
+    await store.dispatch(actions.fetchUserFollowers(id));
 
     expect(store.getActions()).toEqual(expectedActions);
   });

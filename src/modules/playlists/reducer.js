@@ -30,9 +30,23 @@ function byIdReducer(state = INITIAL_STATE.tracks.byId, action = {}) {
   return state;
 }
 
+function paginationReducer(
+  state = INITIAL_STATE.tracks.pagination,
+  action = {},
+) {
+  if (action.type === actionTypes.SET_PLAYLIST_TRACKS) {
+    return {
+      ...state,
+      [action.payload.id]: action.payload.nextPage,
+    };
+  }
+
+  return state;
+}
+
 const tracksReducer = combineReducers({
   byId: byIdReducer,
-  pagination: () => ({}),
+  pagination: paginationReducer,
 });
 
 const reducer = combineReducers({

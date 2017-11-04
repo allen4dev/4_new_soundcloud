@@ -63,7 +63,7 @@ describe('async actions', () => {
       },
       {
         type: actionTypes.SET_PLAYLIST_TRACKS,
-        payload: { id, trackIds: response.result },
+        payload: { id, trackIds: response.result, nextPage },
       },
     ];
 

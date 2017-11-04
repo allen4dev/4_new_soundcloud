@@ -85,3 +85,23 @@ export function fetchUserPlaylists(id) {
     return response.entities.playlists;
   };
 }
+
+export function fetchUserFollowers(id) {
+  return async (dispatch, getState) => {
+    let results;
+    const nextPage = getState().followers.pagination[id];
+
+    if (nextPage) {
+      results = await api.users.getNextPage(nextPage);
+    } else {
+      results = await api.users.getFollowers(id);
+    }
+
+    const response = normalizedUsers(results.collection);
+
+    dispatch(setUsers(response));
+    dispatch(setResource(id, 'followers', response.result, results.next_href));
+
+    return response.entities.users;
+  };
+}
