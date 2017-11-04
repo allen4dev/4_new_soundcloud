@@ -5,8 +5,8 @@ import { INITIAL_STATE } from './model';
 
 function entitiesReducer(state = INITIAL_STATE.entities, action = {}) {
   switch (action.type) {
-    case actionTypes.FETCH_TRACKS_SUCCESS:
     // Refactor: can use the same FETCH_TRACKS_SUCCESS
+    case actionTypes.FETCH_TRACKS_SUCCESS:
     case actionTypes.SET_TRACK:
       return {
         ...state,
@@ -20,6 +20,7 @@ function entitiesReducer(state = INITIAL_STATE.entities, action = {}) {
 
 const reducer = combineReducers({
   entities: entitiesReducer,
+  currentTrack: () => null,
 });
 
 export default reducer;

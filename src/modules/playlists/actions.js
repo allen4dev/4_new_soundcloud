@@ -23,7 +23,7 @@ export function setPlaylistTracks(id, trackIds, nextPage) {
 export function fetchPlaylistTracks(id) {
   return async (dispatch, getState) => {
     let results;
-    const nextPage = getState().tracks.pagination[id];
+    const nextPage = getState().playlists.tracks.pagination[id];
 
     if (nextPage) {
       results = await api.playlists.getNextPage(nextPage);

@@ -14,4 +14,5 @@ export function normalizedTrack(track) {
 
 export const INITIAL_STATE = {
   entities: {},
+  currentTrack: null,
 };

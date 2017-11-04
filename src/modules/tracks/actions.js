@@ -18,6 +18,13 @@ export function setTrack(response) {
   };
 }
 
+export function setCurrentTrack(id) {
+  return {
+    type: actionTypes.SET_CURRENT_TRACK,
+    payload: id,
+  };
+}
+
 // Async actions
 export function fetchTrack(id) {
   return async dispatch => {

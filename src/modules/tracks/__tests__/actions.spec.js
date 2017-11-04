@@ -35,6 +35,16 @@ describe('Action creators', () => {
 
     expect(actions.setTrack(response)).toEqual(expectedAction);
   });
+
+  it('should create an action to set a current track', () => {
+    const { id } = fixtures.getTrack();
+    const expectedAction = {
+      type: actionTypes.SET_CURRENT_TRACK,
+      payload: id,
+    };
+
+    expect(actions.setCurrentTrack(id)).toEqual(expectedAction);
+  });
 });
 
 describe('Async actions', () => {

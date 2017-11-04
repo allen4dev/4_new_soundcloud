@@ -62,7 +62,10 @@ describe('action creators', () => {
 describe('async actions', () => {
   let store;
   beforeEach(() => {
-    store = mockStore(INITIAL_STATE);
+    // store = mockStore(INITIAL_STATE);
+    store = mockStore({
+      users: INITIAL_STATE,
+    });
   });
 
   afterEach(() => {

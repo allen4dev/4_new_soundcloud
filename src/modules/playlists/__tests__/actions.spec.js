@@ -41,7 +41,7 @@ describe('async actions', () => {
   let store;
 
   beforeEach(() => {
-    store = mockStore(INITIAL_STATE);
+    store = mockStore({ playlists: INITIAL_STATE });
   });
 
   afterEach(() => {

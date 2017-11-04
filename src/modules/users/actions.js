@@ -50,7 +50,7 @@ export function fetchUserFollowings(id) {
   return async (dispatch, getState) => {
     // Refactor
     let results;
-    const nextPage = getState().followings.pagination[id];
+    const nextPage = getState().users.followings.pagination[id];
 
     if (nextPage) {
       results = await api.users.getNextPage(nextPage);
@@ -70,7 +70,7 @@ export function fetchUserFollowings(id) {
 export function fetchUserPlaylists(id) {
   return async (dispatch, getState) => {
     let results;
-    const nextPage = getState().playlists.pagination[id];
+    const nextPage = getState().users.playlists.pagination[id];
 
     if (nextPage) {
       results = await api.users.getNextPage(nextPage);
@@ -89,7 +89,7 @@ export function fetchUserPlaylists(id) {
 export function fetchUserFollowers(id) {
   return async (dispatch, getState) => {
     let results;
-    const nextPage = getState().followers.pagination[id];
+    const nextPage = getState().users.followers.pagination[id];
 
     if (nextPage) {
       results = await api.users.getNextPage(nextPage);
