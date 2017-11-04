@@ -50,13 +50,17 @@ describe('entities', () => {
       },
     });
   });
+});
 
-  it('should handle SET_USER_FOLLOWINGS action', () => {
+describe('createReducer', () => {
+  it('should handle SET_RESOURCE action', () => {
     const { id } = fixtures.getUser();
+    const filter = 'followings';
+    const nextPage = 'https://example.test/next-page';
     const followings = fixtures.getUserIds(5);
     const nextState = reducer(
       INITIAL_STATE,
-      actions.setUserFollowings(id, followings)
+      actions.setResource(id, filter, followings, nextPage),
     );
 
     expect(nextState).toEqual({
@@ -66,13 +70,15 @@ describe('entities', () => {
         byId: {
           [id]: followings,
         },
+        pagination: nextPage,
       },
     });
 
     const newFollowings = fixtures.getUserIds(5);
+    const newPage = 'https://example.test/page-2';
     const newState = reducer(
       nextState,
-      actions.setUserFollowings(id, newFollowings)
+      actions.setResource(id, filter, newFollowings, newPage),
     );
 
     expect(newState).toEqual({
@@ -82,6 +88,7 @@ describe('entities', () => {
         byId: {
           [id]: [...(nextState.followings.byId[id] || []), ...newFollowings],
         },
+        pagination: newPage,
       },
     });
   });

@@ -18,10 +18,17 @@ export function setUser(response) {
   };
 }
 
-export function setUserFollowings(id, followings) {
+export function setResource(id, filter, result, nextPage) {
   return {
-    type: actionTypes.SET_USER_FOLLOWINGS,
-    payload: { id, followings },
+    type: actionTypes.SET_RESOURCES,
+    payload: { id, filter, result, nextPage },
+  };
+}
+
+export function setResourceNextPage(filter, nextPage) {
+  return {
+    type: actionTypes.SET_RESOURCES_NEXT_PAGE,
+    payload: { filter, nextPage },
   };
 }
 
@@ -38,12 +45,20 @@ export function fetchUser(id) {
 }
 
 export function fetchUserFollowings(id) {
-  return async dispatch => {
-    const results = await api.users.getFollowings(id);
+  return async (dispatch, getState) => {
+    let results;
+    const nextPage = getState().followings.pagination[id];
+
+    if (nextPage) {
+      results = await api.users.getNextPage(nextPage);
+    } else {
+      results = await api.users.getFollowings(id);
+    }
+
     const response = normalizedUsers(results.collection);
 
     dispatch(setUsers(response));
-    dispatch(setUserFollowings(id, response.result));
+    dispatch(setResource(id, 'followings', response.result, results.next_href));
 
     return response.entities.users;
   };

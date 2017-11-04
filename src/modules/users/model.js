@@ -14,7 +14,15 @@ export function normalizedUsers(results) {
 
 export const INITIAL_STATE = {
   entities: {},
+  playlists: {
+    byId: {},
+    pagination: {},
+  },
   followings: {
+    byId: {},
+    pagination: {},
+  },
+  followers: {
     byId: {},
     pagination: {},
   },

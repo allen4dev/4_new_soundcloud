@@ -39,11 +39,23 @@ describe('action creators', () => {
     const { id } = fixtures.getUser();
     const followings = fixtures.getRawUsers().map(user => user.id);
     const expectedAction = {
-      type: actionTypes.SET_USER_FOLLOWINGS,
-      payload: { id, followings },
+      type: actionTypes.SET_RESOURCES,
+      payload: { id, filter: 'followings', followings },
     };
 
-    expect(actions.setUserFollowings(id, followings));
+    expect(actions.setResource(id, 'followings', followings));
+  });
+
+  it('should create an action to set a resource next page', () => {
+    const nextPage = 'https://example.test/nextPage';
+    // filter can be playlists followers or followings
+    const filter = 'playlists';
+    const expectedAction = {
+      type: actionTypes.SET_RESOURCES_NEXT_PAGE,
+      payload: { filter, nextPage },
+    };
+
+    expect(actions.setResourceNextPage(filter, nextPage));
   });
 });
 
@@ -82,9 +94,9 @@ describe('async actions', () => {
     expect(store.getActions()).toEqual(expectedActions);
   });
 
-  it('should create FETCH_USER_SUCCESS and SET_USER_FOLLOWINGS after fethUserFollowings action', async () => {
+  it('should create FETCH_USER_SUCCESS and SET_RESOURCES after fethUserFollowings action', async () => {
     const { id } = fixtures.getUser();
-    const response = fixtures.getResponse(5);
+    const response = fixtures.getResponse(2);
     const rawResponse = Object.values(response.entities.users);
     const url = `${baseURL}/users/${id}/followings?limit=12&linked_partitioning=1&client_id=${clientID}`;
 
@@ -96,8 +108,13 @@ describe('async actions', () => {
         response,
       },
       {
-        type: actionTypes.SET_USER_FOLLOWINGS,
-        payload: { id, followings: response.result },
+        type: actionTypes.SET_RESOURCES,
+        payload: {
+          id,
+          filter: 'followings',
+          result: response.result,
+          nextPage,
+        },
       },
     ];
 

@@ -17,28 +17,52 @@ function entitiesReducer(state = INITIAL_STATE.entities, action = {}) {
   }
 }
 
-function byIdReducer(state = INITIAL_STATE.followings.byId, action = {}) {
-  if (action.type === actionTypes.SET_USER_FOLLOWINGS) {
-    return {
-      ...state,
-      [action.payload.id]: [
-        ...(state[action.payload.id] || []),
-        ...action.payload.followings,
-      ],
-    };
-  }
+function byIdReducer(filter) {
+  return (state = INITIAL_STATE[filter].byId, action = {}) => {
+    if (!action.payload || action.payload.filter !== filter) {
+      return state;
+    }
 
-  return state;
+    if (action.type === actionTypes.SET_RESOURCES) {
+      return {
+        ...state,
+        [action.payload.id]: [
+          ...(state[action.payload.id] || []),
+          ...action.payload.result,
+        ],
+      };
+    }
+
+    return state;
+  };
 }
 
-const followingsReducer = combineReducers({
-  byId: byIdReducer,
-  pagination: () => ({}),
-});
+function paginationReducer(filter) {
+  return (state = INITIAL_STATE[filter].pagination, action = {}) => {
+    if (!action.payload || action.payload.filter !== filter) {
+      return state;
+    }
+
+    if (action.type === actionTypes.SET_RESOURCES) {
+      return action.payload.nextPage;
+    }
+
+    return state;
+  };
+}
+
+function createReducer(filter) {
+  return combineReducers({
+    byId: byIdReducer(filter),
+    pagination: paginationReducer(filter),
+  });
+}
 
 const reducer = combineReducers({
   entities: entitiesReducer,
-  followings: followingsReducer,
+  followings: createReducer('followings'),
+  followers: createReducer('followers'),
+  playlists: createReducer('playlists'),
 });
 
 export default reducer;
