@@ -23,6 +23,21 @@ const fixtures = {
   },
 
   // Refactor
+  getPlaylistsResponse(n) {
+    let playlists = {};
+
+    while (n-- > 0) {
+      const newPlaylist = { id: uuid(), title: 'Random title' };
+      playlists = { ...playlists, [newPlaylist.id]: newPlaylist };
+    }
+
+    return {
+      entities: { playlists },
+      result: Object.keys(playlists),
+    };
+  },
+
+  // Refactor
   getResponse(n = 1) {
     let users = {};
 

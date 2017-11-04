@@ -44,7 +44,10 @@ function paginationReducer(filter) {
     }
 
     if (action.type === actionTypes.SET_RESOURCES) {
-      return action.payload.nextPage;
+      return {
+        ...state,
+        [action.payload.id]: action.payload.nextPage,
+      };
     }
 
     return state;

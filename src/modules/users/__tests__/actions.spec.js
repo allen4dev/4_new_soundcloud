@@ -127,4 +127,32 @@ describe('async actions', () => {
 
     expect(store.getActions()).toEqual(expectedActions);
   });
+
+  it('should create SET_RESOURCES after fetchUserPlaylists actions', async () => {
+    const { id } = fixtures.getUser();
+    const nextPage = `${baseURL}/dummie-page-1`;
+    const response = fixtures.getPlaylistsResponse(2);
+    const rawResponse = Object.values(response.entities.playlists);
+    const url = `${baseURL}/users/${id}/playlists?limit=12&linked_partitioning=1&client_id=${clientID}`;
+
+    const expectedActions = [
+      {
+        type: 'playlists/FETCH_PLAYLISTS_SUCCESS',
+        response,
+      },
+      {
+        type: actionTypes.SET_RESOURCES,
+        payload: { id, filter: 'playlists', result: response.result, nextPage },
+      },
+    ];
+
+    fetchMock.getOnce(url, {
+      body: { collection: rawResponse, next_href: nextPage },
+      headers: { 'content-type': 'application/json' },
+    });
+
+    await store.dispatch(actions.fetchUserPlaylists(id));
+
+    expect(store.getActions()).toEqual(expectedActions);
+  });
 });

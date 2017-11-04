@@ -3,6 +3,8 @@ import { normalizedUser, normalizedUsers } from './model';
 
 import api from './../../utils/api';
 
+import playlists from './../playlists';
+
 // Action creators
 export function setUsers(response) {
   return {
@@ -46,6 +48,7 @@ export function fetchUser(id) {
 
 export function fetchUserFollowings(id) {
   return async (dispatch, getState) => {
+    // Refactor
     let results;
     const nextPage = getState().followings.pagination[id];
 
@@ -61,5 +64,24 @@ export function fetchUserFollowings(id) {
     dispatch(setResource(id, 'followings', response.result, results.next_href));
 
     return response.entities.users;
+  };
+}
+
+export function fetchUserPlaylists(id) {
+  return async (dispatch, getState) => {
+    let results;
+    const nextPage = getState().playlists.pagination[id];
+
+    if (nextPage) {
+      results = await api.users.getNextPage(nextPage);
+    } else {
+      results = await api.users.getPlaylists(id);
+    }
+
+    const response = playlists.model.normalizedPlaylists(results.collection);
+    dispatch(playlists.actions.setPlaylists(response));
+    dispatch(setResource(id, 'playlists', response.result, results.next_href));
+
+    return response.entities.playlists;
   };
 }

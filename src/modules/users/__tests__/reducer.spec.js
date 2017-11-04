@@ -70,7 +70,9 @@ describe('createReducer', () => {
         byId: {
           [id]: followings,
         },
-        pagination: nextPage,
+        pagination: {
+          [id]: nextPage,
+        },
       },
     });
 
@@ -86,9 +88,13 @@ describe('createReducer', () => {
       followings: {
         ...nextState.followings,
         byId: {
+          ...nextState.followings.byId,
           [id]: [...(nextState.followings.byId[id] || []), ...newFollowings],
         },
-        pagination: newPage,
+        pagination: {
+          ...nextState.followings.pagination,
+          [id]: newPage,
+        },
       },
     });
   });
