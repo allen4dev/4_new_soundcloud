@@ -18,9 +18,17 @@ function entitiesReducer(state = INITIAL_STATE.entities, action = {}) {
   }
 }
 
+function currentTrackReducer(state = INITIAL_STATE.currentTrack, action = {}) {
+  if (action.type === actionTypes.SET_CURRENT_TRACK) {
+    return action.payload;
+  }
+
+  return state;
+}
+
 const reducer = combineReducers({
   entities: entitiesReducer,
-  currentTrack: () => null,
+  currentTrack: currentTrackReducer,
 });
 
 export default reducer;

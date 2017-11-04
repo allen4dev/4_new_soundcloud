@@ -54,3 +54,23 @@ describe('entities', () => {
     });
   });
 });
+
+describe('currentTrack', () => {
+  it('should handle SET_CURRENT_TRACK', () => {
+    const { id } = fixtures.getTrack();
+    const nextState = reducer(INITIAL_STATE, actions.setCurrentTrack(id));
+
+    expect(nextState).toEqual({
+      ...INITIAL_STATE,
+      currentTrack: id,
+    });
+
+    const { id: newId } = fixtures.getTrack();
+    const newState = reducer(nextState, actions.setCurrentTrack(newId));
+
+    expect(newState).toEqual({
+      ...nextState,
+      currentTrack: newId,
+    });
+  });
+});

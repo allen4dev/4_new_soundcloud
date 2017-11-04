@@ -14,4 +14,6 @@ export const INITIAL_STATE = {
     byId: {},
     pagination: {},
   },
+  // ToDo
+  // currentList: [],
 };
