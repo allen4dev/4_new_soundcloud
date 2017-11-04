@@ -11,6 +11,31 @@ const fixtures = {
       },
     };
   },
+
+  getTracks(n) {
+    let tracks = [];
+
+    while (n-- > 0) {
+      tracks.push(uuid());
+    }
+
+    return tracks;
+  },
+
+  getTracksResponse(n) {
+    let tracks = {};
+
+    while (n-- > 0) {
+      const newTrack = this.getPlaylist();
+      tracks = { ...tracks, [newTrack.id]: newTrack };
+    }
+
+    return {
+      entities: { tracks },
+      result: Object.keys(tracks),
+    };
+  },
+
   getResponse(n) {
     let playlists = {};
 
@@ -20,7 +45,7 @@ const fixtures = {
     }
 
     return {
-      entities: { tracks: { a: 'foo' }, playlists, users: { b: 'bam' } },
+      entities: { playlists },
       result: Object.keys(playlists),
     };
   },

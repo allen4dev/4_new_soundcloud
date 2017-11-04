@@ -16,8 +16,28 @@ function entitiesReducer(state = INITIAL_STATE.entities, action = {}) {
   }
 }
 
+function byIdReducer(state = INITIAL_STATE.tracks.byId, action = {}) {
+  if (action.type === actionTypes.SET_PLAYLIST_TRACKS) {
+    return {
+      ...state,
+      [action.payload.id]: [
+        ...(state[action.payload.id] || []),
+        ...action.payload.trackIds,
+      ],
+    };
+  }
+
+  return state;
+}
+
+const tracksReducer = combineReducers({
+  byId: byIdReducer,
+  pagination: () => ({}),
+});
+
 const reducer = combineReducers({
   entities: entitiesReducer,
+  tracks: tracksReducer,
 });
 
 export default reducer;

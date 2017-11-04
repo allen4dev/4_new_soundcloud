@@ -10,4 +10,8 @@ export function normalizedPlaylists(results) {
 
 export const INITIAL_STATE = {
   entities: {},
+  tracks: {
+    byId: {},
+    pagination: {},
+  },
 };
