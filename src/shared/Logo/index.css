@@ -5,6 +5,6 @@
 .Logo-link {
   color: white;
   font-size: var(--font-logo);
-  padding: var(--space-small);
+  padding: 0 var(--space-small);
   text-decoration: none;
 }

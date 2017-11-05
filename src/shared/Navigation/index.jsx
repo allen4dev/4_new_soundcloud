@@ -6,11 +6,11 @@ import './index.css';
 const Navigation = () => {
   return (
     <nav className="Navigation">
-      <Link to="/" className="Navigation-link">
-        Signin
+      <Link to="/results" className="Navigation-link">
+        Explora
       </Link>
-      <Link to="/" className="Navigation-link">
-        Signup
+      <Link to="/me" className="Navigation-link">
+        Coleccion
       </Link>
     </nav>
   );

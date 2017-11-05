@@ -5,27 +5,10 @@ import Tracks from './containers/Tracks';
 import Playlists from './containers/Playlists';
 import Users from './containers/Users';
 
-import Menu from './../../shared/Menu';
+import Aside from './../../shared/Aside';
 
 import './index.css';
 
-const items = [
-  {
-    id: 'menu-results-tracks',
-    path: '/results/tracks',
-    text: 'Tracks',
-  },
-  {
-    id: 'menu-results-playlists',
-    path: '/results/playlists',
-    text: 'Playlists',
-  },
-  {
-    id: 'menu-results-users',
-    path: '/results/users',
-    text: 'Users',
-  },
-];
 export class Results extends Component {
   renderRoutes() {
     // const { match, query } = this.props;
@@ -45,8 +28,8 @@ export class Results extends Component {
   }
   render() {
     return (
-      <div className="Results">
-        <Menu items={items} />
+      <div className="Results page">
+        <Aside />
 
         {this.renderRoutes()}
       </div>
