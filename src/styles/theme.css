@@ -1,7 +1,8 @@
 :root {
   /* colors */
   --orange: #ff5500;
-  --gray: #cbcbcb;
+  --gray: #f2f2f2;
+  --light-gray: #f2f2f2;
   --dark: #333333;
 
   /* spaces */

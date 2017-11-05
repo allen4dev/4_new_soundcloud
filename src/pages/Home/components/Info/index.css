@@ -1,0 +1,26 @@
+.Info {
+  background-color: var(--light-gray);
+  background-image: url('./../../../../images/phones.jpg');
+  background-repeat: no-repeat;
+  background-size: 60%;
+  background-position: 90% bottom;
+  height: var(--size-banner-height);
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.Info-description {
+  width: 35%;
+  font-size: var(--font-medium);
+  padding: var(--space-normal);
+}
+
+.Info-title {
+  color: var(--dark);
+  margin-bottom: var(--space-normal);
+}
+
+.Info-text {
+  line-height: var(--space-medium);
+}

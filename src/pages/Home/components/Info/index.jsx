@@ -4,8 +4,16 @@ import './index.css';
 
 const Info = () => {
   return (
-    <div className="Info">
-      <h1>Info</h1>
+    <div className="Info container">
+      <div className="Info-apps">
+        <div className="Info-description">
+          <h2 className="Info-title">Llevate la musica contigo</h2>
+          <p className="Info-text">
+            SoundCloud esta disponible en Web, Mobile, Sonos, Google Chromecast
+            y Microsoft Xbox One.
+          </p>
+        </div>
+      </div>
     </div>
   );
 };
