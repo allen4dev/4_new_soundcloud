@@ -4,7 +4,7 @@ import Logo from './../Logo';
 import Navigation from './../Navigation';
 import Searchbar from './../Searchbar';
 
-import Buttons from './Buttons';
+import Buttons from './components/Buttons';
 
 import './index.css';
 
