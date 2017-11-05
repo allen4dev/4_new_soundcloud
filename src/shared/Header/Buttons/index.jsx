@@ -5,8 +5,8 @@ import './index.css';
 const Buttons = () => {
   return (
     <div className="Header-buttons">
-      <button>Login</button>
-      <button>Signin</button>
+      <button className="Header-button btn btn-flat">Login</button>
+      <button className="Header-button btn btn-flat">Signin</button>
     </div>
   );
 };

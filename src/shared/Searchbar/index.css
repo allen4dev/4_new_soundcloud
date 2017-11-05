@@ -1,0 +1,10 @@
+.Searchbar {
+  flex: 1;
+}
+
+.Searchbar-input {
+  border: none;
+  font-size: var(--font-normal);
+  padding: var(--space-small);
+  width: 100%;
+}

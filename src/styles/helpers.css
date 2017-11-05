@@ -1,0 +1,20 @@
+.container {
+  padding: 0 2em;
+}
+
+/* buttons */
+.btn {
+  color: white;
+  cursor: pointer;
+  font-size: var(--font-normal);
+  padding: var(--space-small) var(--space-normal);
+}
+
+.btn-normal {
+  background-color: var(--orange);
+}
+
+.btn-flat {
+  border: none;
+  background-color: transparent;
+}

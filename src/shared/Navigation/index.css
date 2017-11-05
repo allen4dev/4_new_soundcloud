@@ -1,0 +1,10 @@
+.Navigation {
+  display: flex;
+}
+
+.Navigation-link {
+  color: white;
+  padding: var(--space-small) var(--space-normal);
+  display: block;
+  text-decoration: none;
+}

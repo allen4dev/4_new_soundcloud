@@ -1,4 +1,10 @@
 .Logo {
-  color: var(--orange);
+  background-color: var(--orange);
+}
+
+.Logo-link {
+  color: white;
   font-size: var(--font-logo);
+  padding: var(--space-small);
+  text-decoration: none;
 }
