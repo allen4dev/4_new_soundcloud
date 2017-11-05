@@ -1,0 +1,25 @@
+:root {
+  /* colors */
+  --orange: #ff5500;
+  --gray: #cbcbcb;
+  --dark: #333333;
+
+  /* spaces */
+  --space-small: 0.5rem;
+  --space-normal: 1rem;
+  --space-medium: 1.5rem;
+  --space-big: 2rem;
+
+  /* fonts */
+  --font-small: 0.8rem;
+  --font-normal: 1rem;
+  --font-medium: 1.2rem;
+  --font-big: 1.5rem;
+  --font-title: 2rem;
+
+  /* sizes */
+  /* --size-header:  */
+
+  /* z-index */
+  /* ... */
+}
