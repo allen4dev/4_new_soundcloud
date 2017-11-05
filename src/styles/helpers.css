@@ -2,8 +2,13 @@
   padding: 0 2em;
 }
 
+.page {
+  margin-top: var(--size-header);
+}
+
 /* buttons */
 .btn {
+  border: none;
   color: white;
   cursor: pointer;
   font-size: var(--font-normal);
@@ -15,6 +20,5 @@
 }
 
 .btn-flat {
-  border: none;
   background-color: transparent;
 }

@@ -1,1 +1,26 @@
+.Hero {
+  background-image: url('./../../images/banner.jpg');
+  background-size: cover;
+  background-position: center;
+  height: var(--size-banner-height);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+.Hero-content {
+  text-align: center;
+  width: 60%;
+}
+
+.Hero-title {
+  /* font-size: var(--font-logo); */
+  color: white;
+}
+
+.Hero-text {
+  color: white;
+  font-size: var(--font-medium);
+  line-height: 1.5em;
+  margin: var(--space-medium) 0;
+}

@@ -12,7 +12,7 @@ import './index.css';
 export class Home extends Component {
   render() {
     return (
-      <div className="Home">
+      <div className="Home page">
         <Hero />
         <PopularTracks />
         <Explore />

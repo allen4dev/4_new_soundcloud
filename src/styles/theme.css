@@ -20,7 +20,8 @@
 
   /* sizes */
   --size-header: 3em;
+  --size-banner-height: 50vh;
 
   /* z-index */
-  /* ... */
+  --z-header: 1000;
 }
