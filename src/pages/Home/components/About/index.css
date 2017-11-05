@@ -1,0 +1,28 @@
+.About {
+  background-image: url('./../../../../images/artist_home.jpg');
+  background-size: cover;
+  background-position: 50%;
+  height: var(--size-banner-height);
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.About-content {
+  color: white;
+  width: 50%;
+}
+
+.About-title {
+  font-size: var(--font-title);
+}
+
+.About-text {
+  font-size: var(--font-medium);
+  line-height: var(--space-medium);
+  margin: var(--space-medium) 0;
+}
+
+.About-button {
+  border: 1px solid white;
+}
