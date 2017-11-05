@@ -1,0 +1,37 @@
+.JoinNow {
+  height: var(--size-banner-height);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.JoinNow-content {
+  height: 50%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.JoinNow-title {
+  color: var(--dark);
+  font-size: var(--font-title);
+}
+
+.JoinNow-text {
+  font-size: var(--font-medium);
+}
+
+.JoinNow-signin {
+  margin-top: var(--space-medium);
+}
+
+.JoinNow-signinText {
+  margin-right: var(--space-normal);
+}
+
+.JoinNow-signinButton {
+  border: 1px solid var(--dark);
+  color: var(--dark);
+}

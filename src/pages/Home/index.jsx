@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
 import Explore from './components/Explore';
-// Refactor: Duplicate Join components name
-import Join from './components/Join';
+// Refactor: Duplicate JoinNow components name
+import JoinNow from './components/JoinNow';
 
 import Hero from './../../shared/Hero';
 import PopularTracks from './../../shared/PopularTracks';
@@ -16,7 +16,7 @@ export class Home extends Component {
         <Hero />
         <PopularTracks />
         <Explore />
-        <Join />
+        <JoinNow />
       </div>
     );
   }
