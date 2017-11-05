@@ -1,0 +1,23 @@
+.TrackCard-description {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: var(--space-small) 0;
+}
+
+.TrackCard-title {
+  color: var(--dark);
+  font-weight: bold;
+  margin-bottom: var(--space-small);
+}
+
+.TrackCard-username {
+  color: gray;
+  font-size: var(--font-small);
+}
+
+.TrackCard-photo,
+.TrackCard-title,
+.TrackCard-username {
+  text-decoration: none;
+}

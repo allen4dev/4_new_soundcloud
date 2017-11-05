@@ -1,1 +1,14 @@
+.PopularTracks {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
+.PopularTracks-title {
+  margin: var(--space-medium) 0 var(--space-normal);
+}
+
+.PopularTracks-button {
+  margin: var(--space-small) 0 var(--space-normal);
+}

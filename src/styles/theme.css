@@ -21,6 +21,7 @@
   /* sizes */
   --size-header: 3em;
   --size-banner-height: 50vh;
+  --size-num-items-card: 6;
 
   /* z-index */
   --z-header: 1000;

@@ -1,0 +1,10 @@
+.TrackCardList .List {
+  display: flex;
+  flex-wrap: wrap;
+  padding: var(--space-small);
+}
+
+.TrackCardList .TrackCard {
+  width: calc((100% / var(--size-num-items-card)) - 1em);
+  margin: var(--space-small);
+}
