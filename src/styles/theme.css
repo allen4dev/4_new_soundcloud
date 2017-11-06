@@ -4,6 +4,8 @@
   --gray: #999999;
   --light-gray: #f2f2f2;
   --dark: #333333;
+  --header-gradient-dark: #a7917c;
+  --header-gradient-light: #c1bab0;
 
   /* spaces */
   --space-extra-small: 0.2em;

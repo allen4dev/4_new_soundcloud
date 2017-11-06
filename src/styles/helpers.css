@@ -57,9 +57,17 @@
   max-width: 100%;
 }
 
+/* utils */
+
 .truncate {
   width: 100%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.styledTag {
+  background-color: black;
+  color: white;
+  padding: var(--space-extra-small) var(--space-small);
 }
