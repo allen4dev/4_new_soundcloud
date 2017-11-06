@@ -1,9 +1,9 @@
-.UserList .List {
+.SetList .List {
   display: flex;
   flex-wrap: wrap;
 }
 
-.UserList .User {
-  width: calc((100% / 4) - 1em);
+.SetList .Playlist {
   margin: var(--space-small);
+  width: calc((100% / 4) - 1em);
 }
