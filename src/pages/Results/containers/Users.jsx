@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 
+import UserList from './../../../modules/users/components/UserList';
+
 export class Users extends Component {
   render() {
     return (
       <section className="Users">
-        <h1>Results Users</h1>
+        <UserList items={new Array(12).fill({})} />
       </section>
     );
   }
