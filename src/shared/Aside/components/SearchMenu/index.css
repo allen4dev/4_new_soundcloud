@@ -1,3 +1,24 @@
-.MenuVertical {
-  position: fixed;
+.SearchMenu-title {
+  color: var(--dark);
+  margin-top: var(--space-normal);
+  margin-bottom: var(--space-small);
+  padding: var(--space-normal);
+}
+
+.SearchMenu-link {
+  color: var(--dark);
+  display: block;
+  /* font-size: var(--font-normal); */
+  font-weight: bold;
+  padding: var(--space-small) var(--space-normal);
+  text-decoration: none;
+}
+
+.SearchMenu-link:hover {
+  background-color: var(--orange);
+  color: white;
+}
+
+.SearchMenu-icon {
+  margin-right: var(--space-small);
 }

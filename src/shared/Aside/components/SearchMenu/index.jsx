@@ -5,22 +5,26 @@ import { NavLink } from 'react-router-dom';
 import './index.css';
 
 // Refactor: Copy paste from Menu
-const SeachMenu = ({ items }) => {
+const SearchMenu = ({ items }) => {
   return (
-    <ul className="SeachMenu">
-      {items.map(item => (
-        <li key={item.id} className="SeachMenu-item">
-          <NavLink
-            exact={item.exact || false}
-            className="SeachMenu-link"
-            activeClassName="SeachMenu-link--active"
-            to={item.path}>
-            {item.text}
-          </NavLink>
-        </li>
-      ))}
-    </ul>
+    <div className="SearchMenu">
+      <h4 className="SearchMenu-title">Filtrar por recurso</h4>
+      <ul className="SearchMenu-list">
+        {items.map(item => (
+          <li key={item.id} className="SearchMenu-item">
+            <NavLink
+              exact={item.exact || false}
+              className="SearchMenu-link"
+              activeClassName="SearchMenu-link--active"
+              to={item.path}>
+              <i className={`SearchMenu-icon icon-${item.icon}`} />
+              {item.text}
+            </NavLink>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 };
 
-export default SeachMenu;
+export default SearchMenu;

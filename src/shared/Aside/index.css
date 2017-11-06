@@ -1,0 +1,7 @@
+.Aside {
+  position: fixed;
+  left: 0;
+  top: var(--size-header);
+  bottom: 0;
+  width: 20%;
+}

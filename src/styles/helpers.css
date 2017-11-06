@@ -23,6 +23,18 @@
   background-color: transparent;
 }
 
+/* links */
+.tag {
+  background-color: gray;
+  border-radius: var(--space-big);
+  color: white;
+  display: inline-block;
+  font-size: var(--font-small);
+  margin: var(--space-small);
+  padding: var(--space-small);
+  text-decoration: none;
+}
+
 /* images */
 .imageContainer {
   font-size: 0;

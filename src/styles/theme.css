@@ -6,6 +6,7 @@
   --dark: #333333;
 
   /* spaces */
+  --space-extra-small: 0.2em;
   --space-small: 0.5em;
   --space-normal: 1em;
   --space-medium: 1.5em;

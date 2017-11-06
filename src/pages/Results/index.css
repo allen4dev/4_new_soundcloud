@@ -1,0 +1,17 @@
+.Results {
+  position: relative;
+}
+
+/* .Results .Aside {
+  border: 4px solid blue;
+  position: fixed;
+  left: 0;
+  top: var(--size-header);
+  bottom: 0;
+  width: 20%;
+} */
+
+.Results-content {
+  border: 4px solid green;
+  margin-left: 20%;
+}

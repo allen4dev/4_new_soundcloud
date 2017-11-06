@@ -15,7 +15,11 @@ export class Results extends Component {
     const { match } = this.props;
 
     if (!match.params.filter) {
-      return <h2 className="message">Search something</h2>;
+      return (
+        <div className="Results-content">
+          <h2 className="message">Search something</h2>
+        </div>
+      );
     }
 
     return (
