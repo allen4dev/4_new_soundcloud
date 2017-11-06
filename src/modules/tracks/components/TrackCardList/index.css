@@ -4,7 +4,7 @@
   padding: var(--space-small);
 }
 
-.TrackCardList .TrackCard {
-  width: calc((100% / var(--size-num-items-card)) - 1em);
+/* .TrackCardList .TrackCard {
   margin: var(--space-small);
-}
+  width: calc((100% / var(--size-num-items-card)) - 1em);
+} */

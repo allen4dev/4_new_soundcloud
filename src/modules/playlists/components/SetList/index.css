@@ -3,7 +3,7 @@
   flex-wrap: wrap;
 }
 
-.SetList .Playlist {
+/* .SetList .Playlist {
   margin: var(--space-small);
   width: calc((100% / 6) - 1em);
-}
+} */

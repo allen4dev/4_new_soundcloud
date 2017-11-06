@@ -25,3 +25,13 @@
 .Results-message {
   color: gray;
 }
+
+.Results .Playlist {
+  margin: var(--space-small);
+  width: calc((100% / 4) - 1em);
+}
+
+.Results .User {
+  width: calc((100% / 4) - 1em);
+  margin: var(--space-small);
+}

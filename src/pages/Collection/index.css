@@ -6,3 +6,18 @@
   padding: var(--space-small);
   margin: var(--space-normal) 0;
 }
+
+.Collection .TrackCard {
+  margin: var(--space-small);
+  width: calc((100% / 6) - 1em);
+}
+
+.Collection .Playlist {
+  margin: var(--space-small);
+  width: calc((100% / 6) - 1em);
+}
+
+.Collection .User {
+  width: calc((100% / 6) - 1em);
+  margin: var(--space-small);
+}
