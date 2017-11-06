@@ -1,3 +1,8 @@
 .Collection-content {
   padding: var(--space-big);
 }
+
+.Collection-title {
+  padding: var(--space-small);
+  margin: var(--space-normal) 0;
+}

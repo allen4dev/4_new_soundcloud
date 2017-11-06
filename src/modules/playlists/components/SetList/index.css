@@ -5,5 +5,5 @@
 
 .SetList .Playlist {
   margin: var(--space-small);
-  width: calc((100% / 4) - 1em);
+  width: calc((100% / 6) - 1em);
 }

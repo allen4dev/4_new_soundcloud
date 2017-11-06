@@ -23,7 +23,7 @@
 .Playlist-description {
   display: flex;
   flex-direction: column;
-  padding: var(--space-small);
+  padding: var(--space-small) 0;
 }
 
 .Playlist-title {

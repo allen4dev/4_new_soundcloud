@@ -1,30 +1,21 @@
 import React from 'react';
-
-import defaultImage from './../../../../images/default_image.png';
+import { Link } from 'react-router-dom';
 
 import './index.css';
+
+import defaultImage from './../../../../images/default_image.png';
 
 const User = () => {
   const src = defaultImage;
 
   return (
     <li className="User">
-      <div className="User-photo imageContainer">
-        <img src={src} alt="User image" className="User-image image" />
-      </div>
+      <Link to="/users/123" className="User-photo imageContainer">
+        <img src={src} alt="" className="User-image image" />
+      </Link>
 
       <div className="User-description">
-        <span className="User-username">allen4dev</span>
-        <div className="User-info">
-          <span className="User-count User-followers">
-            <i className="User-countIcon icon-users" /> 7
-          </span>
-
-          <span className="User-count User-followings">
-            <i className="User-countIcon icon-music" /> 852
-          </span>
-        </div>
-        <button className="User-follow btn-flat">Seguir</button>
+        <div className="User-username">allen4dev</div>
       </div>
     </li>
   );

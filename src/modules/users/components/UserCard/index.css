@@ -1,0 +1,29 @@
+.UserCard {
+  color: var(--dark);
+}
+
+.UserCard-photo {
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.UserCard-description {
+  /* margin-top: var(--space-normal); */
+  padding: var(--space-medium);
+}
+
+.UserCard-info {
+  margin: var(--space-normal) 0;
+}
+
+.UserCard-count {
+  font-size: var(--font-small);
+}
+
+.UserCard-count:not(:last-child) {
+  margin-right: var(--space-small);
+}
+
+.UserCard-countIcon {
+  margin-right: var(--space-extra-small);
+}
