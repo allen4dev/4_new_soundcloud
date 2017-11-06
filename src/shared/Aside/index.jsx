@@ -9,7 +9,7 @@ const items = [
   {
     id: 'menu-results-tracks',
     path: '/results/tracks',
-    icon: 'music',
+    icon: 'assistive-listening-systems',
     text: 'Tracks',
   },
   {

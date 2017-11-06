@@ -15,6 +15,15 @@ const User = () => {
 
       <div className="User-description">
         <span className="User-username">allen4dev</span>
+        <div className="User-info">
+          <span className="User-count User-followers">
+            <i className="User-countIcon icon-users" /> 7
+          </span>
+
+          <span className="User-count User-followings">
+            <i className="User-countIcon icon-music" /> 852
+          </span>
+        </div>
         <button className="User-follow btn-flat">Seguir</button>
       </div>
     </li>

@@ -9,7 +9,7 @@
   color: var(--dark);
   display: block;
   /* font-size: var(--font-normal); */
-  font-weight: bold;
+  /* font-weight: bold; */
   padding: var(--space-small) var(--space-normal);
   text-decoration: none;
 }

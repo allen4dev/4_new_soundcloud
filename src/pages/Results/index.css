@@ -13,8 +13,10 @@
 
 .Results-content {
   margin-left: 20%;
+  padding: 0 var(--space-big);
 }
 
 .Results-title {
   padding: var(--space-normal) 0;
+  margin-bottom: var(--space-big);
 }

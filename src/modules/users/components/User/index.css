@@ -1,1 +1,29 @@
+.User {
+  color: var(--dark);
+}
 
+.User-photo {
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.User-description {
+  /* margin-top: var(--space-normal); */
+  padding: var(--space-medium);
+}
+
+.User-info {
+  margin: var(--space-normal) 0;
+}
+
+.User-count {
+  font-size: var(--font-small);
+}
+
+.User-count:not(:last-child) {
+  margin-right: var(--space-small);
+}
+
+.User-countIcon {
+  margin-right: var(--space-extra-small);
+}
