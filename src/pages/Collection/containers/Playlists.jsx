@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 
+import SetList from './../../../modules/playlists/components/SetList';
+
 export class Playlists extends Component {
   render() {
     return (
       <section className="Collection-playlists">
-        <h1>Playlists</h1>
+        <SetList items={new Array(24).fill({})} />
       </section>
     );
   }

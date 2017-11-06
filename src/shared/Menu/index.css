@@ -1,6 +1,6 @@
 .Menu {
   display: flex;
-  padding: var(--space-normal);
+  padding: var(--space-normal) var(--space-medium);
 }
 
 .Menu-link {

@@ -19,7 +19,7 @@
 .Results-title,
 .Results-message {
   padding: var(--space-normal) 0;
-  margin-bottom: var(--space-big);
+  margin-bottom: var(--space-normal);
 }
 
 .Results-message {

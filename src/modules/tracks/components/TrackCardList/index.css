@@ -1,7 +1,7 @@
 .TrackCardList .List {
   display: flex;
   flex-wrap: wrap;
-  padding: var(--space-small);
+  /* padding: var(--space-small); */
 }
 
 /* .TrackCardList .TrackCard {

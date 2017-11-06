@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 
+import TrackCardList from './../../../modules/tracks/components/TrackCardList';
+
 export class Tracks extends Component {
   render() {
     return (
       <section className="Collection-tracks">
-        <h1>Tracks</h1>
+        <TrackCardList items={new Array(24).fill({})} />
       </section>
     );
   }
