@@ -1,0 +1,19 @@
+.Menu {
+  display: flex;
+  padding: var(--space-normal);
+}
+
+.Menu-link {
+  color: var(--dark);
+  display: block;
+  font-size: var(--font-big);
+  font-weight: bold;
+  padding: var(--space-extra-small) 0;
+  margin: 0 var(--space-small);
+  text-decoration: none;
+}
+
+.Menu-link--active {
+  box-shadow: 0 2px 0 var(--orange);
+  color: var(--orange);
+}

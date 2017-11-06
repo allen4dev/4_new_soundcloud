@@ -15,37 +15,35 @@ const items = [
   {
     id: 'menu-collections-overview',
     path: '/me',
-    text: 'Overview',
+    text: 'Resumen',
     exact: true,
   },
   {
     id: 'menu-collections-tracks',
     path: '/me/tracks',
-    text: 'Tracks',
+    text: 'Pistas',
   },
   {
     id: 'menu-collections-playlists',
     path: '/me/playlists',
-    text: 'Playlists',
+    text: 'Listas',
   },
   {
     id: 'menu-collections-following',
     path: '/me/following',
-    text: 'Following',
+    text: 'Siguiendo',
   },
   {
     id: 'menu-collections-history',
     path: '/me/history',
-    text: 'History',
+    text: 'Historial',
   },
 ];
 
 export class Collection extends Component {
   render() {
     return (
-      <div className="Collection">
-        <h1>Collection</h1>
-
+      <div className="Collection page">
         <Menu items={items} />
 
         <div className="Collection-content">

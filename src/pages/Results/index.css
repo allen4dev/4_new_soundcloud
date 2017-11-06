@@ -16,7 +16,12 @@
   padding: 0 var(--space-big);
 }
 
-.Results-title {
+.Results-title,
+.Results-message {
   padding: var(--space-normal) 0;
   margin-bottom: var(--space-big);
+}
+
+.Results-message {
+  color: gray;
 }
