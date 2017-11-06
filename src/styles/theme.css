@@ -1,7 +1,7 @@
 :root {
   /* colors */
   --orange: #ff5500;
-  --gray: #f2f2f2;
+  --gray: #999999;
   --light-gray: #f2f2f2;
   --dark: #333333;
 
@@ -24,6 +24,7 @@
   --size-header: 3em;
   --size-banner-height: 50vh;
   --size-num-items-card: 6;
+  --size-item-image: 20%;
 
   /* z-index */
   --z-header: 1000;

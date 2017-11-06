@@ -20,7 +20,20 @@
 }
 
 .btn-flat {
+  color: var(--dark);
+  /* border: 1px solid var(--gray); */
+  box-shadow: 0 0 2px var(--gray);
+  padding: var(--space-extra-small) var(--space-small);
   background-color: transparent;
+}
+
+.btn-play {
+  color: white;
+  background-color: var(--orange);
+  border: none;
+  border-radius: 50%;
+  font-size: var(--font-medium);
+  padding: var(--space-small);
 }
 
 /* links */

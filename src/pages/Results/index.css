@@ -12,6 +12,9 @@
 } */
 
 .Results-content {
-  border: 4px solid green;
   margin-left: 20%;
+}
+
+.Results-title {
+  padding: var(--space-normal) 0;
 }

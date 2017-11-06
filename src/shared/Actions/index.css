@@ -1,0 +1,7 @@
+.Action-button:not(:last-child) {
+  margin-right: var(--space-normal);
+}
+
+.Action-icon {
+  margin-right: var(--space-extra-small);
+}

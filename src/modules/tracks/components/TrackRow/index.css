@@ -1,0 +1,55 @@
+.TrackRow {
+  margin-bottom: var(--space-medium);
+  display: flex;
+}
+
+.TrackRow-photo {
+  flex-basis: var(--size-item-image);
+}
+
+.TrackRow-body {
+  padding: 0 var(--space-normal);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.TrackRow-progress {
+  background-color: var(--light-gray);
+  height: 50px;
+  display: flex;
+}
+
+.TrackRow-progressFilled {
+  background-color: var(--orange);
+}
+
+.TrackRow-header {
+  display: flex;
+  align-items: center;
+}
+
+.TrackRow-play {
+  margin-right: var(--space-small);
+}
+
+.TrackRow-description {
+  display: flex;
+  flex-direction: column;
+}
+
+.TrackRow-username,
+.TrackRow-title {
+  text-decoration: none;
+}
+
+.TrackRow-title {
+  color: var(--dark);
+}
+
+.TrackRow-username {
+  color: gray;
+  font-size: var(--font-small);
+  margin-bottom: var(--space-small);
+}

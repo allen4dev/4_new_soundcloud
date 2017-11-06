@@ -24,6 +24,7 @@ export class Results extends Component {
 
     return (
       <div className="Results-content">
+        <h2 className="Results-title">Resultados de busqueda para: "Anime"</h2>
         <Route path="/results/tracks" component={Tracks} />
         <Route path="/results/playlists" component={Playlists} />
         <Route path="/results/users" component={Users} />
