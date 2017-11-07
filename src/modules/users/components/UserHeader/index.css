@@ -1,0 +1,33 @@
+.UserHeader {
+  background: linear-gradient(to bottom left, #062448 30%, #364faa 100%);
+  height: 30vh;
+  padding: 0 var(--space-big);
+  display: flex;
+  align-items: center;
+}
+
+.UserHeader-content {
+  display: flex;
+  align-items: flex-end;
+}
+
+.UserHeader-info {
+  display: flex;
+}
+
+.UserHeader-avatar {
+  border-radius: 50%;
+  overflow: hidden;
+  width: 30%;
+}
+
+.UserHeader-description {
+  margin-left: var(--space-medium);
+}
+
+.UserHeader-fullname {
+  display: block;
+  font-size: var(--font-medium);
+  font-weight: bold;
+  margin-bottom: var(--space-small);
+}

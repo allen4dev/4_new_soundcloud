@@ -1,0 +1,18 @@
+.UserDetail-content {
+  display: flex;
+}
+
+.UserDetail-tracks .TrackCard {
+  margin: var(--space-small);
+  width: calc((100% / 4) - 1em);
+}
+
+.UserDetail-playlists .Playlist {
+  margin: var(--space-small);
+  width: calc((100% / 4) - 1em);
+}
+
+.UserDetail-followings .User {
+  margin: var(--space-small);
+  width: calc((100% / 4) - 1em);
+}

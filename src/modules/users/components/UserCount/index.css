@@ -1,0 +1,21 @@
+.UserCount-list {
+  display: flex;
+}
+
+.UserCount-item {
+  border-left: 1px solid var(--light-gray);
+  color: var(--gray);
+  padding: var(--space-small) var(--space-normal);
+}
+
+.UserCount-title {
+  color: white;
+  font-size: var(--font-medium);
+  display: block;
+  margin-bottom: var(--space-small);
+}
+
+.UserCount-value {
+  font-size: var(--font-medium);
+  font-weight: bold;
+}

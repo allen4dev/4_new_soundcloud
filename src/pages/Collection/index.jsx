@@ -4,7 +4,7 @@ import { Route } from 'react-router-dom';
 import Overview from './containers/Overview';
 import Tracks from './containers/Tracks';
 import Playlists from './containers/Playlists';
-import Following from './containers/Following';
+import Followers from './containers/Followers';
 import History from './containers/History';
 
 import Menu from './../../shared/Menu';
@@ -29,9 +29,9 @@ const items = [
     text: 'Listas',
   },
   {
-    id: 'menu-collections-following',
-    path: '/me/following',
-    text: 'Siguiendo',
+    id: 'menu-collections-followers',
+    path: '/me/followers',
+    text: 'Seguidores',
   },
   {
     id: 'menu-collections-history',
@@ -50,7 +50,7 @@ export class Collection extends Component {
           <Route exact path="/me" component={Overview} />
           <Route path="/me/tracks" component={Tracks} />
           <Route path="/me/playlists" component={Playlists} />
-          <Route path="/me/following" component={Following} />
+          <Route path="/me/followers" component={Followers} />
           <Route path="/me/history" component={History} />
         </div>
       </div>

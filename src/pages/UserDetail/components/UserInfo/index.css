@@ -1,0 +1,13 @@
+.UserInfo {
+  flex: 1;
+}
+
+.UserInfo-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.UserInfo-content {
+  padding: var(--space-medium);
+}

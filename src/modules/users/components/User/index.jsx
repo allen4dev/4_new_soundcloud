@@ -10,7 +10,7 @@ const User = () => {
 
   return (
     <li className="User">
-      <Link to="/users/123" className="User-photo imageContainer">
+      <Link to="/users/123/favorited" className="User-photo imageContainer">
         <img src={src} alt="" className="User-image image" />
       </Link>
 
