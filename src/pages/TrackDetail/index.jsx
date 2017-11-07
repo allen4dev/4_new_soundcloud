@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import TrackHeader from './../../modules/tracks/components/TrackHeader';
+import ItemHeader from './../../shared/ItemHeader';
 
 import Content from './components/Content';
 
@@ -10,7 +10,11 @@ export class TrackDetail extends Component {
   render() {
     return (
       <section className="TrackDetail page">
-        <TrackHeader />
+        <ItemHeader>
+          <div className="Progress">
+            <div className="Progress-filled">Put progress here</div>
+          </div>
+        </ItemHeader>
         <Content />
       </section>
     );
