@@ -1,0 +1,38 @@
+.Comment {
+  display: flex;
+  align-items: flex-start;
+}
+
+.Comment:not(:last-child) {
+  margin-bottom: var(--space-big);
+}
+
+.Comment-info {
+  margin-bottom: var(--space-small);
+  display: flex;
+  justify-content: space-between;
+}
+
+.Comment-avatar {
+  border-radius: 50%;
+  overflow: hidden;
+  width: 50px;
+}
+
+.Comment-description {
+  flex: 1;
+  margin-left: var(--space-normal);
+}
+
+.Comment-author,
+.Comment-publishedAt {
+  color: var(--gray);
+}
+
+.Comment-author {
+  font-size: var(--font-medium);
+}
+
+.Comment-body {
+  color: var(--dark);
+}

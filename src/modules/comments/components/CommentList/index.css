@@ -1,2 +1,5 @@
 .CommentList {
+  height: 50vh;
+  overflow: hidden;
+  overflow-y: scroll;
 }
