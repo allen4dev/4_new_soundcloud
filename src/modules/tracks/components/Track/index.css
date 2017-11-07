@@ -1,0 +1,33 @@
+.Track {
+  display: flex;
+  align-items: center;
+}
+
+.Track:not(:last-child) {
+  border-bottom: 1px solid var(--light-gray);
+  padding: var(--space-small) 0;
+}
+
+.Track-photo {
+  width: 50px;
+}
+
+.Track-description {
+  flex: 1;
+  margin-left: var(--space-small);
+  padding: var(--space-small);
+  display: flex;
+  justify-content: space-between;
+}
+
+.Track-name {
+  color: var(--dark);
+}
+
+.Track-duration {
+  color: var(--gray);
+}
+
+.Track-icon {
+  margin-right: var(--space-small);
+}

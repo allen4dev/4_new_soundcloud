@@ -13,9 +13,11 @@ class PlaylistDetail extends Component {
     return (
       <div className="PlaylistDetail page">
         <ItemHeader>
-          <span style={{ backgroundColor: 'black', color: 'white' }}>
-            Num of tracks here
-          </span>
+          <div className="trackCount">
+            <span className="number">72</span>
+            <span className="number">pistas</span>
+            <span className="duration">6:00:46</span>
+          </div>
         </ItemHeader>
 
         <section className="PlaylistDetail-content content">

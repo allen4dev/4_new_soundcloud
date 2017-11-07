@@ -1,11 +1,19 @@
 import React from 'react';
 
+import Track from './../Track';
+
+import List from './../../../../shared/List';
+
 import './index.css';
 
-const TrackList = () => {
+function renderTrack(track, i) {
+  return <Track key={i} {...track} />;
+}
+
+const TrackList = ({ items }) => {
   return (
     <div className="TrackList">
-      <span>List here</span>
+      <List items={items}>{renderTrack}</List>
     </div>
   );
 };

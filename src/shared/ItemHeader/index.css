@@ -27,7 +27,7 @@
 
 .ItemHeader-actions {
   display: flex;
-  align-items: flex-center;
+  align-items: flex-start;
 }
 
 .ItemHeader-play {

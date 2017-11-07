@@ -25,9 +25,5 @@
 }
 
 .UserCard-count:not(:last-child) {
-  margin-right: var(--space-small);
-}
-
-.UserCard-countIcon {
-  margin-right: var(--space-extra-small);
+  margin-right: var(--space-normal);
 }

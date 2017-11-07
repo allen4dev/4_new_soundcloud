@@ -1,7 +1,6 @@
 import React from 'react';
 
 import UserCard from './../../modules/users/components/UserCard';
-import CommentList from './../../modules/comments/components/CommentList';
 
 import './index.css';
 

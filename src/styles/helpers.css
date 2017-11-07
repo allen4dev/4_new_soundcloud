@@ -75,3 +75,27 @@
   color: white;
   padding: var(--space-extra-small) var(--space-small);
 }
+
+.trackCount {
+  background-color: var(--dark);
+  border-radius: 50%;
+  color: white;
+  padding: var(--space-normal) var(--space-medium);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.trackCount span:first-of-type {
+  font-size: var(--font-big);
+  font-weight: bold;
+}
+
+.trackCount span:nth-child(2) {
+  text-transform: uppercase;
+  margin: var(--space-small) 0;
+}
+
+.trackCount span:last-of-type {
+  color: var(--gray);
+}

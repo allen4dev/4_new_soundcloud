@@ -10,7 +10,7 @@ const User = () => {
   return (
     <li className="UserCard">
       <div className="UserCard-photo imageContainer">
-        <img src={src} alt="UserCard image" className="UserCard-image image" />
+        <img src={src} alt="allen4dev" className="UserCard-image image" />
       </div>
 
       <div className="UserCard-description">
@@ -24,7 +24,7 @@ const User = () => {
             <i className="UserCard-countIcon icon-music" /> 852
           </span>
         </div>
-        <button className="UserCard-follow btn-flat">Seguir</button>
+        <button className="UserCard-follow btn btn-normal">Seguir</button>
       </div>
     </li>
   );
