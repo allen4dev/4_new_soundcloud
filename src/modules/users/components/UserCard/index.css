@@ -16,6 +16,10 @@
   margin: var(--space-normal) 0;
 }
 
+.UserCard-username {
+  font-size: var(--font-medium);
+}
+
 .UserCard-count {
   font-size: var(--font-small);
 }

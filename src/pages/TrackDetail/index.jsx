@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import TrackHeader from './../../modules/tracks/components/TrackHeader';
 
-import Info from './components/Info';
+import Content from './components/Content';
 
 import './index.css';
 
@@ -11,7 +11,7 @@ export class TrackDetail extends Component {
     return (
       <section className="TrackDetail page">
         <TrackHeader />
-        <Info />
+        <Content />
       </section>
     );
   }

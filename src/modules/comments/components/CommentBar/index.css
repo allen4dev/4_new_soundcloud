@@ -1,0 +1,20 @@
+.CommentBar {
+  background-color: var(--light-gray);
+  display: flex;
+  align-items: center;
+}
+
+.CommentBar-avatar {
+  width: 50px;
+}
+
+.CommentBar-form {
+  flex: 1;
+  padding: 0 var(--space-small);
+}
+
+.CommentBar-input {
+  font-size: var(--font-normal);
+  padding: var(--space-extra-small) var(--space-small);
+  width: 100%;
+}

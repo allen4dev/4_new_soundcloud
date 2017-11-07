@@ -25,7 +25,7 @@ const TrackHeader = () => {
             </div>
           </div>
 
-          <span className="TrackHeader-date">4 anios</span>
+          <span className="TrackHeader-date">4 años</span>
         </div>
 
         <div className="TrackHeader-progress">

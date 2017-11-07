@@ -2,6 +2,10 @@
   padding: 0 2em;
 }
 
+.content {
+  padding: var(--space-normal);
+}
+
 .page {
   margin-top: var(--size-header);
 }
