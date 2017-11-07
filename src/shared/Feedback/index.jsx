@@ -5,7 +5,7 @@ import CommentList from './../../modules/comments/components/CommentList';
 
 import './index.css';
 
-const Feedback = () => {
+const Feedback = ({ children }) => {
   return (
     <section className="Feedback">
       <UserCard />
@@ -23,7 +23,8 @@ const Feedback = () => {
             </p>
           </div>
         </div>
-        <CommentList items={new Array(12).fill({})} />
+
+        <div className="Feedback-children">{children}</div>
       </div>
     </section>
   );
