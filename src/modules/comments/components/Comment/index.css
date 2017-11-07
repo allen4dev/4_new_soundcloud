@@ -1,6 +1,7 @@
 .Comment {
   display: flex;
   align-items: flex-start;
+  padding: var(--space-small);
 }
 
 .Comment:not(:last-child) {
