@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import UserList from './../../../modules/users/components/UserList';
+
+import InfiniteScroll from './../../../HOC/InfinityScroll';
+
 import search from './../../../modules/search';
 
-import UserList from './../../../modules/users/components/UserList';
+const InfiniteUsers = InfiniteScroll(UserList);
 
 export class Users extends Component {
   componentDidMount() {
@@ -27,11 +31,21 @@ export class Users extends Component {
     await searchUsers(query);
   };
 
+  searchNextUsers = async () => {
+    const { searchUsersNextPage } = this.props;
+
+    await searchUsersNextPage();
+  };
+
   render() {
     return (
       <section className="Users">
-        <UserList items={this.props.items} />
-        {this.props.isFetching && <h1>Loading...</h1>}
+        <InfiniteUsers
+          items={this.props.items}
+          isLoading={this.props.isFetching}
+          hasNextPage={this.props.hasNextPage}
+          onPaginatedSearch={this.searchNextUsers}
+        />
       </section>
     );
   }
@@ -40,8 +54,10 @@ export class Users extends Component {
 function mapStateToProps(state) {
   const ids = state.search.users.results;
   const isFetching = state.search.users.fetching;
+  const hasNextPage = state.search.users.nextPage ? true : false;
 
   return {
+    hasNextPage,
     isFetching,
     query: state.search.query,
     items: ids.map(id => state.users.entities[id]),
@@ -50,4 +66,5 @@ function mapStateToProps(state) {
 
 export default connect(mapStateToProps, {
   searchUsers: search.actions.searchUsers,
+  searchUsersNextPage: search.actions.searchUsersNextPage,
 })(Users);

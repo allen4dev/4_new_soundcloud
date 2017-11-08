@@ -3,12 +3,15 @@ import { connect } from 'react-redux';
 
 import TrackRowList from './../../../modules/tracks/components/TrackRowList';
 
+import InfiniteScroll from './../../../HOC/InfinityScroll';
+
 import search from './../../../modules/search';
+
+const InfiniteTracks = InfiniteScroll(TrackRowList);
 
 class Tracks extends Component {
   componentDidMount() {
     const { items, query, isFetching } = this.props;
-    console.log('Query', query);
 
     if (items.length === 0 && !isFetching) {
       this.fetchData(query);
@@ -28,11 +31,21 @@ class Tracks extends Component {
     await searchTracks(query);
   };
 
+  searchNextTracks = async () => {
+    const { searchTracksNextPage } = this.props;
+
+    await searchTracksNextPage();
+  };
+
   render() {
     return (
       <section className="Tracks">
-        <TrackRowList items={this.props.items} />
-        {this.props.isFetching && <h1>Loading...</h1>}
+        <InfiniteTracks
+          items={this.props.items}
+          isLoading={this.props.isFetching}
+          hasNextPage={this.props.hasNextPage}
+          onPaginatedSearch={this.searchNextTracks}
+        />
       </section>
     );
   }
@@ -41,9 +54,11 @@ class Tracks extends Component {
 function mapStateToProps(state) {
   const ids = state.search.tracks.results;
   const isFetching = state.search.tracks.fetching;
+  const hasNextPage = state.search.tracks.nextPage ? true : false;
 
   return {
     isFetching,
+    hasNextPage,
     query: state.search.query,
     items: ids.map(id => state.tracks.entities[id]),
   };
@@ -51,4 +66,5 @@ function mapStateToProps(state) {
 
 export default connect(mapStateToProps, {
   searchTracks: search.actions.searchTracks,
+  searchTracksNextPage: search.actions.searchTracksNextPage,
 })(Tracks);

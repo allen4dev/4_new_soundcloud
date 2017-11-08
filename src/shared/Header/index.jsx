@@ -10,8 +10,6 @@ import Buttons from './components/Buttons';
 
 import search from './../../modules/search';
 
-import helpers from './../../utils/helpers';
-
 import './index.css';
 
 class Header extends Component {
@@ -76,5 +74,5 @@ function mapStateToProps(state) {
 export default withRouter(
   connect(mapStateToProps, {
     setQuery: search.actions.setQuery,
-  })(Header)
+  })(Header),
 );

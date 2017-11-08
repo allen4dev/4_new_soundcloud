@@ -36,7 +36,7 @@ describe('createReducer: tracks, playlists, users', () => {
       const nextPage = 'https://api.soundcloud.com/tracks-next-page';
       const nextState = reducer(
         INITIAL_STATE,
-        actions.setResults(filter, result, nextPage)
+        actions.setResults(filter, result, nextPage),
       );
 
       expect(nextState).toEqual({
@@ -52,7 +52,7 @@ describe('createReducer: tracks, playlists, users', () => {
 
       const newState = reducer(
         nextState,
-        actions.setResults(filter, newResult, nextPage)
+        actions.setResults(filter, newResult, nextPage),
       );
 
       expect(newState).toEqual({
@@ -70,7 +70,7 @@ describe('createReducer: tracks, playlists, users', () => {
       const tracksResult = fixtures.getResponse('tracks', 2).result;
       const stateOne = reducer(
         INITIAL_STATE,
-        actions.setResults('tracks', tracksResult, nextPage)
+        actions.setResults('tracks', tracksResult, nextPage),
       );
 
       expect(stateOne).toEqual({
@@ -85,7 +85,7 @@ describe('createReducer: tracks, playlists, users', () => {
       const playlistsResult = fixtures.getResponse('playlists', 2).result;
       const stateTwo = reducer(
         stateOne,
-        actions.setResults('playlists', playlistsResult, nextPage)
+        actions.setResults('playlists', playlistsResult, nextPage),
       );
 
       expect(stateTwo).toEqual({
@@ -104,7 +104,7 @@ describe('createReducer: tracks, playlists, users', () => {
       const usersResult = fixtures.getResponse('users', 2).result;
       const stateThree = reducer(
         stateTwo,
-        actions.setResults('users', usersResult, nextPage)
+        actions.setResults('users', usersResult, nextPage),
       );
 
       expect(stateThree).toEqual({
@@ -146,7 +146,7 @@ describe('createReducer: tracks, playlists, users', () => {
       const nextPage = 'https://dumiepage.com';
       const nextState = reducer(
         INITIAL_STATE,
-        actions.setResults(filter, result, nextPage)
+        actions.setResults(filter, result, nextPage),
       );
 
       expect(nextState).toEqual({
@@ -168,7 +168,7 @@ describe('createReducer: tracks, playlists, users', () => {
       const nextPage = 'https://api.soundcloud.com/page-1';
       const nextState = reducer(
         INITIAL_STATE,
-        actions.setResults(filter, result, nextPage)
+        actions.setResults(filter, result, nextPage),
       );
 
       expect(nextState).toEqual({

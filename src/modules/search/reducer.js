@@ -31,8 +31,10 @@ function resultsReducer(filter) {
 
     switch (action.type) {
       case actionTypes.FETCH_RESOURCE_SUCCESS:
-        // return [...state, ...action.payload.result];
         return action.payload.result;
+
+      case actionTypes.SET_RESULTS_NEXT_PAGE:
+        return [...state, ...action.payload.result];
 
       default:
         return state;
@@ -51,6 +53,7 @@ function fetchingReducer(filter) {
         return true;
 
       case actionTypes.FETCH_RESOURCE_SUCCESS:
+      case actionTypes.SET_RESULTS_NEXT_PAGE:
         return false;
 
       default:
@@ -67,6 +70,7 @@ function nextPageReducer(filter) {
 
     switch (action.type) {
       case actionTypes.FETCH_RESOURCE_SUCCESS:
+      case actionTypes.SET_RESULTS_NEXT_PAGE:
         return action.payload.nextPage;
 
       default:

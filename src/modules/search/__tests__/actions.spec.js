@@ -36,7 +36,7 @@ describe('action creators', () => {
     };
 
     expect(actions.setResults(filter, result, nextPage)).toEqual(
-      expectedAction
+      expectedAction,
     );
   });
 
@@ -51,7 +51,7 @@ describe('action creators', () => {
     };
 
     expect(actions.setResults(filter, result, nextPage)).toEqual(
-      expectedAction
+      expectedAction,
     );
   });
 
@@ -66,7 +66,7 @@ describe('action creators', () => {
     };
 
     expect(actions.setResults(filter, result, nextPage)).toEqual(
-      expectedAction
+      expectedAction,
     );
   });
 
@@ -79,6 +79,21 @@ describe('action creators', () => {
     };
 
     expect(actions.requestResource(filter)).toEqual(expectedAction);
+  });
+
+  it('should create an action to set new results on a resource', () => {
+    const filter = 'tracks';
+    const { result } = fixtures.getResponse(filter, 2);
+    const nextPage = 'https://api.soundcloud.com/dummie-next-page';
+
+    const expectedAction = {
+      type: actionTypes.SET_RESULTS_NEXT_PAGE,
+      payload: { filter, result, nextPage },
+    };
+
+    expect(actions.setResultsNextPage(filter, result, nextPage)).toEqual(
+      expectedAction,
+    );
   });
 });
 
