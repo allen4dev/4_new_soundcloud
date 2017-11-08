@@ -11,7 +11,7 @@ const Info = props => {
   return (
     <div className="TrackDetail-info content">
       <CommentBar />
-      <Feedback {...props}>
+      <Feedback info={props.info}>
         <CommentList items={new Array(12).fill({})} />
       </Feedback>
     </div>

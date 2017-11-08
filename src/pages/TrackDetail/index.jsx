@@ -6,6 +6,7 @@ import ItemHeader from './../../shared/ItemHeader';
 import Content from './components/Content';
 
 import tracks from './../../modules/tracks';
+import users from './../../modules/users';
 
 import './index.css';
 
@@ -35,6 +36,7 @@ class TrackDetail extends Component {
     }
 
     const { purchase_url, created_at, ...track } = this.props.track;
+    const info = { purchase_url, created_at };
 
     return (
       <section className="TrackDetail page">
@@ -43,7 +45,7 @@ class TrackDetail extends Component {
             <div className="Progress-filled">Put progress here</div>
           </div>
         </ItemHeader>
-        <Content purchaseUrl={purchase_url} createdAt={created_at} />
+        <Content info={info} />
       </section>
     );
   }
@@ -59,4 +61,5 @@ function mapStateToProps(state, { match }) {
 
 export default connect(mapStateToProps, {
   fetchTrack: tracks.actions.fetchTrack,
+  fetchUser: users.actions.fetchUser,
 })(TrackDetail);
