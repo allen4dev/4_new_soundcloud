@@ -21,11 +21,11 @@ class Header extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    const { query, filter, history } = this.props;
-    const term = helpers.normalizeQuery(this.state.value);
+    const { query, filter, history, setQuery } = this.props;
+    const term = this.state.value;
 
     if (query !== term) {
-      this.props.setQuery(term);
+      setQuery(term);
 
       history.push({
         pathname: `/results/${filter}`,

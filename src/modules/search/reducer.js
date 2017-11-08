@@ -21,6 +21,10 @@ function filterReducer(state = INITIAL_STATE.filter, action = {}) {
 
 function resultsReducer(filter) {
   return (state = INITIAL_STATE[filter].results, action = {}) => {
+    if (action.type === actionTypes.SET_QUERY) {
+      return [];
+    }
+
     if (!action.payload || action.payload.filter !== filter) {
       return state;
     }

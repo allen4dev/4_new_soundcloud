@@ -8,7 +8,6 @@ import search from './../../../modules/search';
 class Playlists extends Component {
   componentDidMount() {
     const { items, query, isFetching } = this.props;
-    console.log('PLAYLIST QUERY:', query);
 
     if (items.length === 0 && !isFetching) {
       this.fetchData(query);
@@ -18,7 +17,6 @@ class Playlists extends Component {
   componentWillReceiveProps(nextProps) {
     const { query } = this.props;
     if (nextProps.query !== query) {
-      console.log('FETCH NEW PLAYLISTS');
       this.fetchData(nextProps.query);
     }
   }

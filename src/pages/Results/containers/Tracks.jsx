@@ -8,6 +8,7 @@ import search from './../../../modules/search';
 class Tracks extends Component {
   componentDidMount() {
     const { items, query, isFetching } = this.props;
+    console.log('Query', query);
 
     if (items.length === 0 && !isFetching) {
       this.fetchData(query);

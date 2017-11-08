@@ -1,5 +1,8 @@
 function normalizeQuery(search) {
-  return search.replace('q=?', '').toLowerCase();
+  // Refactor: Use regex
+  console.log(search);
+  const normalized = search.replace('?q=', '');
+  return normalized.toLowerCase();
 }
 
 export default { normalizeQuery };

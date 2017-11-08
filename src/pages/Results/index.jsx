@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import { Route } from 'react-router-dom';
 
@@ -8,11 +9,25 @@ import Users from './containers/Users';
 
 import Aside from './../../shared/Aside';
 
+import search from './../../modules/search';
+
+import helpers from './../../utils/helpers';
+
 import './index.css';
 
-const Results = ({ match }) => {
-  function renderRoutes() {
-    if (!match.params.filter) {
+class Results extends Component {
+  componentDidMount() {
+    const { location: { search }, setQuery } = this.props;
+
+    const normalized = helpers.normalizeQuery(search);
+
+    if (normalized) {
+      setQuery(normalized);
+    }
+  }
+
+  renderRoutes() {
+    if (!this.props.match.params.filter) {
       return (
         <div className="Results-content">
           <h2 className="Results-message">Search something</h2>
@@ -30,13 +45,17 @@ const Results = ({ match }) => {
     );
   }
 
-  return (
-    <div className="Results page">
-      <Aside />
+  render() {
+    return (
+      <div className="Results page">
+        <Aside />
 
-      {renderRoutes()}
-    </div>
-  );
-};
+        {this.renderRoutes()}
+      </div>
+    );
+  }
+}
 
-export default Results;
+export default connect(null, {
+  setQuery: search.actions.setQuery,
+})(Results);
