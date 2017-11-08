@@ -6,8 +6,8 @@ import List from './../../../../shared/List';
 
 import './index.css';
 
-function renderComment(comment, i) {
-  return <Comment key={i} {...comment} />;
+function renderComment(comment) {
+  return <Comment key={comment.id} {...comment} />;
 }
 
 const CommentList = ({ items }) => {

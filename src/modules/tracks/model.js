@@ -14,5 +14,9 @@ export function normalizedTrack(track) {
 
 export const INITIAL_STATE = {
   entities: {},
+  comments: {
+    byId: {},
+    pagination: {},
+  },
   currentTrack: null,
 };

@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import ItemHeader from './../../shared/ItemHeader';
-
 import Content from './components/Content';
 
+import ItemHeader from './../../shared/ItemHeader';
+
 import tracks from './../../modules/tracks';
-import users from './../../modules/users';
 
 import './index.css';
 
@@ -16,10 +15,18 @@ class TrackDetail extends Component {
   };
 
   async componentDidMount() {
-    const { track } = this.props;
+    const { track, comments, match } = this.props;
+
     if (!track) {
       await this.fetchData();
     }
+
+    if (comments.length === 0) {
+      this.setState({ loading: true });
+
+      await this.props.fetchTrackComments(match.params.id);
+    }
+
     this.setState({ loading: false });
   }
 
@@ -45,7 +52,7 @@ class TrackDetail extends Component {
             <div className="Progress-filled">Put progress here</div>
           </div>
         </ItemHeader>
-        <Content info={info} />
+        <Content info={info} comments={this.props.comments} />
       </section>
     );
   }
@@ -53,13 +60,15 @@ class TrackDetail extends Component {
 
 function mapStateToProps(state, { match }) {
   const id = match.params.id;
+  const commentIds = state.tracks.comments.byId[id] || [];
 
   return {
     track: state.tracks.entities[id],
+    comments: commentIds.map(id => state.comments.entities[id]),
   };
 }
 
 export default connect(mapStateToProps, {
   fetchTrack: tracks.actions.fetchTrack,
-  fetchUser: users.actions.fetchUser,
+  fetchTrackComments: tracks.actions.fetchTrackComments,
 })(TrackDetail);

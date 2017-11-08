@@ -26,8 +26,44 @@ function currentTrackReducer(state = INITIAL_STATE.currentTrack, action = {}) {
   return state;
 }
 
+function byIdReducer(state = INITIAL_STATE.comments.byId, action = {}) {
+  switch (action.type) {
+    case actionTypes.SET_TRACK_COMMENTS:
+      return {
+        ...state,
+        [action.payload.id]: [
+          ...(state[action.payload.id] || []),
+          ...action.payload.result,
+        ],
+      };
+
+    default:
+      return state;
+  }
+}
+
+function paginationReducer(
+  state = INITIAL_STATE.comments.pagination,
+  action = {},
+) {
+  if (action.type === actionTypes.SET_TRACK_COMMENTS) {
+    return {
+      ...state,
+      [action.payload.id]: action.payload.nextPage,
+    };
+  }
+
+  return state;
+}
+
+const commentsReducer = combineReducers({
+  byId: byIdReducer,
+  pagination: paginationReducer,
+});
+
 const reducer = combineReducers({
   entities: entitiesReducer,
+  comments: commentsReducer,
   currentTrack: currentTrackReducer,
 });
 

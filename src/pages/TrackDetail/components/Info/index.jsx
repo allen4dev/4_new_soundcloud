@@ -12,7 +12,7 @@ const Info = props => {
     <div className="TrackDetail-info content">
       <CommentBar />
       <Feedback info={props.info}>
-        <CommentList items={new Array(12).fill({})} />
+        <CommentList items={props.comments} />
       </Feedback>
     </div>
   );

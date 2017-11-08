@@ -4,8 +4,8 @@ import './index.css';
 
 import defaultImage from './../../../../images/default_image.png';
 
-const Comment = () => {
-  const src = defaultImage;
+const Comment = props => {
+  const src = props.user.avatar_url || defaultImage;
 
   return (
     <li className="Comment">
@@ -15,15 +15,10 @@ const Comment = () => {
 
       <div className="Comment-description">
         <div className="Comment-info">
-          <span className="Comment-author">allen4dev</span>
-          <span className="Comment-publishedAt">9 minutos</span>
+          <span className="Comment-author">{props.user.username}</span>
+          <span className="Comment-publishedAt">{props.timestamp}</span>
         </div>
-        <p className="Comment-body">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo,
-          sapiente repudiandae! Dignissimos, labore. Eum sunt commodi quod ipsa
-          mollitia. Quidem ab debitis dolor blanditiis sit consequuntur earum
-          modi doloremque consectetur!
-        </p>
+        <p className="Comment-body">{props.body}</p>
       </div>
     </li>
   );
