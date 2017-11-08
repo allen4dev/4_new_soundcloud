@@ -10,6 +10,8 @@ import Buttons from './components/Buttons';
 
 import search from './../../modules/search';
 
+import helpers from './../../utils/helpers';
+
 import './index.css';
 
 class Header extends Component {
@@ -20,7 +22,7 @@ class Header extends Component {
   handleSubmit = e => {
     e.preventDefault();
     const { query, filter, history, match } = this.props;
-    const term = this.state.value;
+    const term = helpers.normalizeQuery(this.state.value);
 
     if (query !== term) {
       this.props.setQuery(term);

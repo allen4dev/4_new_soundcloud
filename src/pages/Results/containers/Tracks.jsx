@@ -15,6 +15,14 @@ class Tracks extends Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    const { query } = this.props;
+    if (nextProps.query !== query) {
+      console.log('FETCH NEW TRACKS');
+      this.fetchData(nextProps.query);
+    }
+  }
+
   fetchData = async query => {
     const { searchTracks } = this.props;
 

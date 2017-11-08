@@ -59,7 +59,7 @@ describe('createReducer: tracks, playlists, users', () => {
         ...nextState,
         tracks: {
           ...nextState.tracks,
-          results: [...nextState.tracks.results, ...newResult],
+          results: newResult,
           nextPage,
         },
       });
