@@ -6,19 +6,19 @@ import defaultImage from './../../../../images/default_image.png';
 import './index.css';
 
 const TrackCard = props => {
-  const src = defaultImage;
+  const src = props.artwork_url || defaultImage;
   return (
     <li className="TrackCard">
-      <Link to="/tracks/123" className="TrackCard-photo imageContainer">
-        <img src={src} alt="Some track" className="TrackCard-image image" />
+      <Link
+        to={`/tracks/${props.id}`}
+        className="TrackCard-photo imageContainer">
+        <img src={src} alt={props.title} className="TrackCard-image image" />
       </Link>
 
       <div className="TrackCard-description">
-        <Link to="/tracks/123" className="TrackCard-title truncate">
-          Monochrome Rainbow
-        </Link>
-        <Link to="/users/456" className="TrackCard-username">
-          allen4dev
+        <span className="TrackCard-title truncate">{props.title}</span>
+        <Link to={`/users/${props.user.id}`} className="TrackCard-username">
+          {props.user.username}
         </Link>
       </div>
     </li>

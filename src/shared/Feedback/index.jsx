@@ -4,7 +4,7 @@ import UserCard from './../../modules/users/components/UserCard';
 
 import './index.css';
 
-const Feedback = ({ children }) => {
+const Feedback = props => {
   return (
     <section className="Feedback">
       <UserCard />
@@ -12,18 +12,18 @@ const Feedback = ({ children }) => {
         <div className="Feedback-itemInfo">
           <div className="Feedback-itemBox">
             <h4 className="Feedback-itemTitle">Fecha de lanzamiento</h4>
-            <p className="Feedback-text">15 Septiembre 2017</p>
+            <p className="Feedback-text">{props.createdAt}</p>
           </div>
 
           <div className="Feedback-itemBox">
-            <h4 className="Feedback-itemTitle">Linea de comunicacion</h4>
+            <h4 className="Feedback-itemTitle">Comprar</h4>
             <p className="Feedback-text">
-              © 2017 Republic Records, a division of UMG Recording, Inc.
+              {props.purchaseUrl || 'no link provided'}
             </p>
           </div>
         </div>
 
-        <div className="Feedback-children">{children}</div>
+        <div className="Feedback-children">{props.children}</div>
       </div>
     </section>
   );

@@ -7,11 +7,11 @@ import Feedback from './../../../../shared/Feedback';
 
 import './index.css';
 
-const Info = () => {
+const Info = props => {
   return (
     <div className="TrackDetail-info content">
       <CommentBar />
-      <Feedback>
+      <Feedback {...props}>
         <CommentList items={new Array(12).fill({})} />
       </Feedback>
     </div>

@@ -5,8 +5,8 @@ import './index.css';
 
 import defaultImage from './../../images/default_image.png';
 
-const ItemHeader = ({ children }) => {
-  const src = defaultImage;
+const ItemHeader = props => {
+  const src = props.artwork_url || defaultImage;
 
   return (
     <header className="ItemHeader">
@@ -18,20 +18,22 @@ const ItemHeader = ({ children }) => {
             </button>
 
             <div className="ItemHeader-details">
-              <Link to="/users/123" className="ItemHeader-author styledTag">
-                allen4dev
+              <Link
+                to={`/users/${props.user.id}`}
+                className="ItemHeader-author styledTag">
+                {props.user.username}
               </Link>
-              <span className="ItemHeader-title styledTag">Brave Shine</span>
+              <span className="ItemHeader-title styledTag">{props.title}</span>
             </div>
           </div>
 
-          <span className="ItemHeader-date">4 años</span>
+          <span className="ItemHeader-date">{props.created_at}</span>
         </div>
-        <div className="ItemHeader-children">{children}</div>
+        <div className="ItemHeader-children">{props.children}</div>
       </div>
 
       <div className="ItemHeader-photo imageContainer">
-        <img src={src} alt="" className="ItemHeader-image image" />
+        <img src={src} alt={props.title} className="ItemHeader-image image" />
       </div>
     </header>
   );

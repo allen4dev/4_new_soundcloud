@@ -6,9 +6,9 @@ import List from './../../../../shared/List';
 
 import './index.css';
 
-function renderTrack(track, i) {
+function renderTrack(track) {
   // key, {...track}, etc
-  return <TrackCard key={i} />;
+  return <TrackCard key={track.id} {...track} />;
 }
 
 const TrackCardList = ({ items }) => {

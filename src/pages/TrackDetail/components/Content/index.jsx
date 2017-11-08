@@ -6,10 +6,10 @@ import Recommendations from './../../../../shared/Recommendations';
 
 import './index.css';
 
-const Content = () => {
+const Content = props => {
   return (
     <div className="TrackDetail-content">
-      <Info />
+      <Info {...props} />
       <Recommendations />
     </div>
   );
