@@ -8,11 +8,16 @@ export function normalizedPlaylists(results) {
   return normalize(results, playlistListSchema);
 }
 
+export function normalizedPlaylist(playlist) {
+  return normalize(playlist, playlistSchema);
+}
+
 export const INITIAL_STATE = {
   entities: {},
   tracks: {
     byId: {},
     pagination: {},
+    fetching: {},
   },
   // ToDo
   // currentList: [],

@@ -44,9 +44,29 @@ function paginationReducer(
   return state;
 }
 
+function fetchingReducer(state = INITIAL_STATE.tracks.fetching, action = {}) {
+  switch (action.type) {
+    case actionTypes.REQUEST_PLAYLIST_TRACKS:
+      return {
+        ...state,
+        [action.payload.id]: true,
+      };
+
+    case actionTypes.SET_PLAYLIST_TRACKS:
+      return {
+        ...state,
+        [action.payload.id]: false,
+      };
+
+    default:
+      return state;
+  }
+}
+
 const tracksReducer = combineReducers({
   byId: byIdReducer,
   pagination: paginationReducer,
+  fetching: fetchingReducer,
 });
 
 const reducer = combineReducers({
