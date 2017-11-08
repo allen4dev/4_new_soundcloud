@@ -1,5 +1,6 @@
 export const INITIAL_STATE = {
   query: null,
+  filter: 'tracks',
   tracks: {
     results: [],
     fetching: false,

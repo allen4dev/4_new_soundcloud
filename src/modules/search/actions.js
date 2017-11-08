@@ -14,6 +14,13 @@ export function setQuery(query) {
   };
 }
 
+export function setFilter(filter) {
+  return {
+    type: actionTypes.SET_FILTER,
+    payload: filter,
+  };
+}
+
 export function setResults(filter, result, nextPage) {
   return {
     type: actionTypes.FETCH_RESOURCE_SUCCESS,

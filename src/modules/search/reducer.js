@@ -11,6 +11,14 @@ function queryReducer(state = INITIAL_STATE.query, action = {}) {
   return state;
 }
 
+function filterReducer(state = INITIAL_STATE.filter, action = {}) {
+  if (action.type === actionTypes.SET_FILTER) {
+    return action.payload;
+  }
+
+  return state;
+}
+
 function resultsReducer(filter) {
   return (state = INITIAL_STATE[filter].results, action = {}) => {
     if (!action.payload || action.payload.filter !== filter) {
@@ -72,6 +80,7 @@ function createReducer(filter) {
 
 const reducer = combineReducers({
   query: queryReducer,
+  filter: filterReducer,
   tracks: createReducer('tracks'),
   playlists: createReducer('playlists'),
   users: createReducer('users'),

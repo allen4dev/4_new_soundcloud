@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
 
 import { Route } from 'react-router-dom';
 
@@ -11,11 +10,8 @@ import Aside from './../../shared/Aside';
 
 import './index.css';
 
-export class Results extends Component {
-  renderRoutes() {
-    // const { match, query } = this.props;
-    const { match } = this.props;
-
+const Results = ({ match }) => {
+  function renderRoutes() {
     if (!match.params.filter) {
       return (
         <div className="Results-content">
@@ -33,21 +29,14 @@ export class Results extends Component {
       </div>
     );
   }
-  render() {
-    return (
-      <div className="Results page">
-        <Aside query={this.props.query || ''} />
 
-        {this.renderRoutes()}
-      </div>
-    );
-  }
-}
+  return (
+    <div className="Results page">
+      <Aside />
 
-function mapStateToProps(state) {
-  return {
-    query: state.search.query,
-  };
-}
+      {renderRoutes()}
+    </div>
+  );
+};
 
-export default connect(mapStateToProps)(Results);
+export default Results;

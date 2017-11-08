@@ -19,11 +19,8 @@ class Header extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    const { query, history, match } = this.props;
+    const { query, filter, history, match } = this.props;
     const term = this.state.value;
-    const filter = match.params.filter || 'tracks';
-
-    console.log(match);
 
     if (query !== term) {
       this.props.setQuery(term);
@@ -70,6 +67,7 @@ class Header extends Component {
 function mapStateToProps(state) {
   return {
     query: state.search.query,
+    filter: state.search.filter,
   };
 }
 
