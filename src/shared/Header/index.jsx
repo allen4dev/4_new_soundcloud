@@ -21,7 +21,7 @@ class Header extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    const { query, filter, history, match } = this.props;
+    const { query, filter, history } = this.props;
     const term = helpers.normalizeQuery(this.state.value);
 
     if (query !== term) {

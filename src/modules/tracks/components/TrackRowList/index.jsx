@@ -6,9 +6,9 @@ import List from './../../../../shared/List';
 
 import './index.css';
 
-function renderTrack(track, i) {
+function renderTrack(track) {
   // key, {...track}, etc
-  return <TrackRow key={i} {...track} />;
+  return <TrackRow key={track.id} {...track} />;
 }
 
 const TrackRowList = ({ items }) => {

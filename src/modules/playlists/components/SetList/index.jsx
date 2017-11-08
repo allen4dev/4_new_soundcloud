@@ -6,8 +6,8 @@ import List from './../../../../shared/List';
 
 import './index.css';
 
-function renderPlaylist(playlist, i) {
-  return <Playlist key={i} />;
+function renderPlaylist(playlist) {
+  return <Playlist key={playlist.id} {...playlist} />;
 }
 
 const SetList = ({ items }) => {

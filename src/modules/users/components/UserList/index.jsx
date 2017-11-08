@@ -6,8 +6,8 @@ import List from './../../../../shared/List';
 
 import './index.css';
 
-function renderUser(user, i) {
-  return <User key={i} />;
+function renderUser(user) {
+  return <User key={user.id} {...user} />;
 }
 
 const UserList = ({ items }) => {

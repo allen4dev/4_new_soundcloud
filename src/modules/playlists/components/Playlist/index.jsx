@@ -5,24 +5,26 @@ import defaultImage from './../../../../images/default_image.png';
 
 import './index.css';
 
-const Playlist = () => {
-  const src = defaultImage;
+const Playlist = props => {
+  const src = props.artwork_url || defaultImage;
 
   return (
     <li className="Playlist">
-      <Link to="/playlists/123" className="Playlist-photo imageContainer">
-        <img src={src} alt="" className="Playlist-image image" />
+      <Link
+        to={`/playlists/${props.id}`}
+        className="Playlist-photo imageContainer">
+        <img src={src} alt={props.title} className="Playlist-image image" />
 
         <div className="Playlist-trackCount">
-          <span className="Playlist-count">55</span>
+          <span className="Playlist-count">{props.track_count}</span>
           <span className="Playlist-countText">pistas</span>
         </div>
       </Link>
 
       <div className="Playlist-description">
-        <span className="Playlist-title truncate">Anime best collection</span>
-        <Link to="/users/123" className="Playlist-author">
-          allen4dev
+        <span className="Playlist-title truncate">{props.title}</span>
+        <Link to={`/users/${props.user.id}`} className="Playlist-author">
+          {props.user.username}
         </Link>
       </div>
     </li>
