@@ -26,10 +26,11 @@ const items = [
   },
 ];
 
-const Aside = () => {
+const Aside = ({ query }) => {
+  console.log(query);
   return (
     <div className="Aside">
-      <SearchMenu items={items} />
+      <SearchMenu items={items} query={query} />
       <FilterBox />
     </div>
   );

@@ -2,10 +2,16 @@ import React from 'react';
 
 import './index.css';
 
-const Searchbar = () => {
+const Searchbar = ({ placeholder, value, handleChange, handleSubmit }) => {
   return (
-    <form className="Searchbar">
-      <input className="Searchbar-input" type="text" placeholder="Search..." />
+    <form className="Searchbar" onSubmit={handleSubmit}>
+      <input
+        className="Searchbar-input"
+        type="text"
+        placeholder={placeholder}
+        value={value}
+        onChange={handleChange}
+      />
     </form>
   );
 };

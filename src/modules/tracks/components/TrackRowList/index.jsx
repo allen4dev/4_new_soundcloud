@@ -8,7 +8,7 @@ import './index.css';
 
 function renderTrack(track, i) {
   // key, {...track}, etc
-  return <TrackRow key={i} />;
+  return <TrackRow key={i} {...track} />;
 }
 
 const TrackRowList = ({ items }) => {

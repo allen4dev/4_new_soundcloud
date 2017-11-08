@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
 import { Route } from 'react-router-dom';
 
 import Tracks from './containers/Tracks';
@@ -34,7 +36,7 @@ export class Results extends Component {
   render() {
     return (
       <div className="Results page">
-        <Aside />
+        <Aside query={this.props.query || ''} />
 
         {this.renderRoutes()}
       </div>
@@ -42,4 +44,10 @@ export class Results extends Component {
   }
 }
 
-export default Results;
+function mapStateToProps(state) {
+  return {
+    query: state.search.query,
+  };
+}
+
+export default connect(mapStateToProps)(Results);

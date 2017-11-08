@@ -7,17 +7,13 @@ import './index.css';
 
 import defaultImage from './../../../../images/default_image.png';
 
-const TrackRow = () => {
-  const src = defaultImage;
+const TrackRow = props => {
+  const src = props.artwork_url || defaultImage;
 
   return (
     <li className="TrackRow">
       <div className="TrackRow-photo imageContainer">
-        <img
-          src={src}
-          alt="track description"
-          className="TrackRow-image image"
-        />
+        <img src={src} alt={props.title} className="TrackRow-image image" />
       </div>
 
       <div className="TrackRow-body">
@@ -30,10 +26,10 @@ const TrackRow = () => {
 
           <div className="TrackRow-description">
             <Link to="/users/123" className="TrackRow-username">
-              allen4dev
+              {props.user.username}
             </Link>
-            <Link to="/tracks/435" className="TrackRow-title">
-              Shirushi
+            <Link to={`/tracks/${props.id}`} className="TrackRow-title">
+              {props.title}
             </Link>
           </div>
         </div>

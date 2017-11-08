@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 import './index.css';
 
 // Refactor: Copy paste from Menu
-const SearchMenu = ({ items }) => {
+const SearchMenu = ({ items, query }) => {
   return (
     <div className="SearchMenu">
       <h4 className="SearchMenu-title">Filtrar por recurso</h4>
@@ -16,7 +16,10 @@ const SearchMenu = ({ items }) => {
               exact={item.exact || false}
               className="SearchMenu-link"
               activeClassName="SearchMenu-link--active"
-              to={item.path}>
+              to={{
+                pathname: item.path,
+                search: `q=${query}`,
+              }}>
               <i className={`SearchMenu-icon icon-${item.icon}`} />
               {item.text}
             </NavLink>
