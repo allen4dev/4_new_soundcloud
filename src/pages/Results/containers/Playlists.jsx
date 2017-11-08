@@ -7,10 +7,10 @@ import search from './../../../modules/search';
 
 class Playlists extends Component {
   componentDidMount() {
-    const { items, query } = this.props;
+    const { items, query, isFetching } = this.props;
     console.log('PLAYLIST QUERY:', query);
 
-    if (items.length === 0) {
+    if (items.length === 0 && !isFetching) {
       this.fetchData(query);
     }
   }
@@ -33,6 +33,7 @@ class Playlists extends Component {
     return (
       <section className="Playlists">
         <SetList items={this.props.items} />
+        {this.props.isFetching && <h1>Loading...</h1>}
       </section>
     );
   }
@@ -40,8 +41,10 @@ class Playlists extends Component {
 
 function mapStateToProps(state) {
   const ids = state.search.playlists.results;
+  const isFetching = state.search.playlists.fetching;
 
   return {
+    isFetching,
     query: state.search.query,
     items: ids.map(id => state.playlists.entities[id]),
   };

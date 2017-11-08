@@ -7,10 +7,9 @@ import UserList from './../../../modules/users/components/UserList';
 
 export class Users extends Component {
   componentDidMount() {
-    const { items, query } = this.props;
-    console.log('Users QUERY:', query);
+    const { items, query, isFetching } = this.props;
 
-    if (items.length === 0) {
+    if (items.length === 0 && !isFetching) {
       this.fetchData(query);
     }
   }
@@ -18,7 +17,6 @@ export class Users extends Component {
   componentWillReceiveProps(nextProps) {
     const { query } = this.props;
     if (nextProps.query !== query) {
-      console.log('FETCH NEW USERS');
       this.fetchData(nextProps.query);
     }
   }
@@ -33,6 +31,7 @@ export class Users extends Component {
     return (
       <section className="Users">
         <UserList items={this.props.items} />
+        {this.props.isFetching && <h1>Loading...</h1>}
       </section>
     );
   }
@@ -40,8 +39,10 @@ export class Users extends Component {
 
 function mapStateToProps(state) {
   const ids = state.search.users.results;
+  const isFetching = state.search.users.fetching;
 
   return {
+    isFetching,
     query: state.search.query,
     items: ids.map(id => state.users.entities[id]),
   };

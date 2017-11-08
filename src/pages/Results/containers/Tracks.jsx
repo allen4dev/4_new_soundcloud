@@ -7,10 +7,9 @@ import search from './../../../modules/search';
 
 class Tracks extends Component {
   componentDidMount() {
-    const { items, query } = this.props;
-    console.log('TRACKS QUERY:', query);
+    const { items, query, isFetching } = this.props;
 
-    if (items.length === 0) {
+    if (items.length === 0 && !isFetching) {
       this.fetchData(query);
     }
   }
@@ -18,7 +17,6 @@ class Tracks extends Component {
   componentWillReceiveProps(nextProps) {
     const { query } = this.props;
     if (nextProps.query !== query) {
-      console.log('FETCH NEW TRACKS');
       this.fetchData(nextProps.query);
     }
   }
@@ -33,6 +31,7 @@ class Tracks extends Component {
     return (
       <section className="Tracks">
         <TrackRowList items={this.props.items} />
+        {this.props.isFetching && <h1>Loading...</h1>}
       </section>
     );
   }
@@ -40,8 +39,10 @@ class Tracks extends Component {
 
 function mapStateToProps(state) {
   const ids = state.search.tracks.results;
+  const isFetching = state.search.tracks.fetching;
 
   return {
+    isFetching,
     query: state.search.query,
     items: ids.map(id => state.tracks.entities[id]),
   };
