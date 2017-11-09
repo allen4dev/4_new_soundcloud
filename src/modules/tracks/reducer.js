@@ -61,12 +61,12 @@ function currentTrackReducer(
   action = {},
 ) {
   switch (action.type) {
-    case actionTypes.SET_CURRENT_TRACK: // play  button
-      return action.payload; // id of the track
+    case actionTypes.SET_CURRENT_TRACK:
+      return action.payload;
 
     case actionTypes.SET_NEXT_TRACK:
     case actionTypes.SET_PREV_TRACK:
-      return action.payload.id;
+      return action.payload;
 
     default:
       return state;

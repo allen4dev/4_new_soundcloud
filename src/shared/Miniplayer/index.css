@@ -1,0 +1,79 @@
+.Miniplayer {
+  background-color: var(--light-gray);
+  color: var(--dark);
+  display: flex;
+  align-items: center;
+  padding: var(--space-small) var(--space-big);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+/* .Miniplayer > * {
+  border: 4px solid red;
+} */
+
+.Miniplayer-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: var(--font-medium);
+  padding: var(--space-small);
+}
+.Miniplayer-button:not(:last-child) {
+  margin-right: var(--space-small);
+}
+
+.Miniplayer-content {
+  margin: 0 var(--space-normal);
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.Miniplayer-currentTime {
+  color: var(--orange);
+}
+
+.Miniplayer-currentTime,
+.Miniplayer-totalTime {
+  font-size: var(--font-small);
+  padding: 0 var(--space-small);
+}
+
+.Miniplayer-progress {
+  background-color: var(--gray);
+  border-radius: var(--space-big);
+  overflow: hidden;
+  height: 2px;
+  flex: 1;
+  display: flex;
+}
+
+.Miniplayer-progressFilled {
+  background-color: var(--orange);
+}
+
+.Miniplayer-info {
+  width: 30%;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+}
+
+.Miniplayer-description {
+  margin-left: var(--space-small);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: calc(100% - 50px - var(--space-small));
+}
+
+.Miniplayer-photo {
+  width: 40px;
+}
+
+.Miniplayer-author {
+  color: var(--gray);
+}

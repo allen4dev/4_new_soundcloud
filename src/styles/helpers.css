@@ -8,6 +8,7 @@
 
 .page {
   margin-top: var(--size-header);
+  margin-bottom: var(--size-miniplayer);
 }
 
 /* buttons */

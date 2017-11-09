@@ -1,7 +1,7 @@
 :root {
   /* colors */
   --orange: #ff5500;
-  --gray: #999999;
+  --gray: #cecece;
   --light-gray: #f2f2f2;
   --dark: #333333;
   --header-gradient-dark: #a7917c;
@@ -27,7 +27,7 @@
   --size-banner-height: 50vh;
   --size-num-items-card: 6;
   --size-item-image: 20%;
-
+  --size-miniplayer: 60px;
   /* z-index */
   --z-header: 1000;
 }
