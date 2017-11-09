@@ -49,14 +49,7 @@ export function fetchUser(id) {
 export function fetchUserFollowings(id) {
   return async (dispatch, getState) => {
     // Refactor
-    let results;
-    const nextPage = getState().users.followings.pagination[id];
-
-    if (nextPage) {
-      results = await api.users.getNextPage(nextPage);
-    } else {
-      results = await api.users.getFollowings(id);
-    }
+    const results = await api.users.getFollowings(id);
 
     const response = normalizedUsers(results.collection);
 
@@ -69,16 +62,9 @@ export function fetchUserFollowings(id) {
 
 export function fetchUserPlaylists(id) {
   return async (dispatch, getState) => {
-    let results;
-    const nextPage = getState().users.playlists.pagination[id];
-
-    if (nextPage) {
-      results = await api.users.getNextPage(nextPage);
-    } else {
-      results = await api.users.getPlaylists(id);
-    }
-
+    const results = await api.users.getPlaylists(id);
     const response = playlists.model.normalizedPlaylists(results.collection);
+
     dispatch(playlists.actions.setPlaylists(response));
     dispatch(setResource(id, 'playlists', response.result, results.next_href));
 

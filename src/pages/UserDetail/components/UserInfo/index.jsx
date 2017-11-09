@@ -11,13 +11,13 @@ import './index.css';
 
 class UserInfo extends Component {
   renderRoutes() {
-    const { uid } = this.props;
+    // const { uid } = this.props;
 
     return (
       <div className="UserInfo-content">
-        <Route path={`/users/${uid}/favorited`} component={Tracks} />
-        <Route path={`/users/${uid}/playlists`} component={Playlists} />
-        <Route path={`/users/${uid}/followings`} component={Followings} />
+        <Route path={`/users/:id/favorited`} component={Tracks} />
+        <Route path={`/users/:id/playlists`} component={Playlists} />
+        <Route path={`/users/:id/followings`} component={Followings} />
       </div>
     );
   }

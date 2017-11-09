@@ -6,8 +6,8 @@ import './index.css';
 
 import defaultImage from './../../../../images/default_image.png';
 
-const UserHeader = () => {
-  const src = defaultImage;
+const UserHeader = props => {
+  const src = props.avatar_url || defaultImage;
 
   return (
     <div className="UserHeader">
@@ -18,12 +18,20 @@ const UserHeader = () => {
           </div>
 
           <div className="UserHeader-description">
-            <span className="UserHeader-fullname styledTag">Alan Aliaga</span>
-            <span className="UserHeader-username styledTag">allen4dev</span>
+            <span className="UserHeader-fullname styledTag">
+              {props.full_name}
+            </span>
+            <span className="UserHeader-username styledTag">
+              {props.username}
+            </span>
           </div>
         </div>
 
-        <UserCount />
+        <UserCount
+          followers_count={props.followers_count}
+          followings_count={props.followings_count}
+          track_count={props.track_count}
+        />
       </div>
     </div>
   );
