@@ -1,5 +1,5 @@
 import * as actionTypes from './actionTypes';
-import { normalizedTrack } from './model';
+import { normalizedTrack, normalizedTracks } from './model';
 
 import comments from './../comments';
 
@@ -34,6 +34,13 @@ export function setTrackComments(id, result, nextPage) {
   };
 }
 
+export function setPopularTracks(result) {
+  return {
+    type: actionTypes.SET_POPULAR_TRACKS,
+    payload: result,
+  };
+}
+
 // Async actions
 export function fetchTrack(id) {
   return async dispatch => {
@@ -53,6 +60,18 @@ export function fetchTrackComments(id) {
 
     dispatch(comments.actions.setComments(response));
     dispatch(setTrackComments(id, response.result, results.next_href));
+
+    return results.collection;
+  };
+}
+
+export function fetchPopularTracks() {
+  return async dispatch => {
+    const results = await api.tracks.searchByTerm('openings');
+    const response = normalizedTracks(results.collection);
+
+    dispatch(setTracks(response));
+    dispatch(setPopularTracks(response.result));
 
     return results.collection;
   };

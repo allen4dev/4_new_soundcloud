@@ -17,13 +17,21 @@ export const INITIAL_STATE = {
   playlists: {
     byId: {},
     pagination: {},
+    fetching: {},
   },
   followings: {
     byId: {},
     pagination: {},
+    fetching: {},
   },
   followers: {
     byId: {},
     pagination: {},
+    fetching: {},
+  },
+  tracks: {
+    byId: {},
+    pagination: {},
+    fetching: {},
   },
 };

@@ -18,5 +18,6 @@ export const INITIAL_STATE = {
     byId: {},
     pagination: {},
   },
+  popular: [],
   currentTrack: null,
 };

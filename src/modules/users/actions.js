@@ -4,6 +4,7 @@ import { normalizedUser, normalizedUsers } from './model';
 import api from './../../utils/api';
 
 import playlists from './../playlists';
+import tracks from './../tracks';
 
 // Action creators
 export function setUsers(response) {
@@ -31,6 +32,13 @@ export function setResourceNextPage(filter, nextPage) {
   return {
     type: actionTypes.SET_RESOURCES_NEXT_PAGE,
     payload: { filter, nextPage },
+  };
+}
+
+export function requestResource(filter, id) {
+  return {
+    type: actionTypes.REQUEST_RESOURCE,
+    payload: { filter, id },
   };
 }
 
@@ -89,5 +97,19 @@ export function fetchUserFollowers(id) {
     dispatch(setResource(id, 'followers', response.result, results.next_href));
 
     return response.entities.users;
+  };
+}
+
+export function fetchUserTracks(id) {
+  return async dispatch => {
+    dispatch(requestResource('tracks', id));
+
+    const results = await api.users.getTracks(id);
+    const response = tracks.model.normalizedTracks(results.collection);
+
+    dispatch(tracks.actions.setTracks(response));
+    dispatch(setResource(id, 'tracks', response.result, results.next_href));
+
+    return results.collection;
   };
 }

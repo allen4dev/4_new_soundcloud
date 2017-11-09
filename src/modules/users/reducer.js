@@ -54,10 +54,35 @@ function paginationReducer(filter) {
   };
 }
 
+function fetchingReducer(filter) {
+  return (state = INITIAL_STATE[filter].fetching, action = {}) => {
+    if (!action.payload || action.payload.filter !== filter) {
+      return state;
+    }
+
+    switch (action.type) {
+      case actionTypes.REQUEST_RESOURCE:
+        return {
+          ...state,
+          [action.payload.id]: true,
+        };
+      case actionTypes.SET_RESOURCES:
+        return {
+          ...state,
+          [action.payload.id]: false,
+        };
+
+      default:
+        return state;
+    }
+  };
+}
+
 function createReducer(filter) {
   return combineReducers({
     byId: byIdReducer(filter),
     pagination: paginationReducer(filter),
+    fetching: fetchingReducer(filter),
   });
 }
 
@@ -66,6 +91,7 @@ const reducer = combineReducers({
   followings: createReducer('followings'),
   followers: createReducer('followers'),
   playlists: createReducer('playlists'),
+  tracks: createReducer('tracks'),
 });
 
 export default reducer;

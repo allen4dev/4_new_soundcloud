@@ -18,6 +18,14 @@ function entitiesReducer(state = INITIAL_STATE.entities, action = {}) {
   }
 }
 
+function popularReducer(state = INITIAL_STATE.popular, action = {}) {
+  if (action.type === actionTypes.SET_POPULAR_TRACKS) {
+    return action.payload;
+  }
+
+  return state;
+}
+
 function currentTrackReducer(state = INITIAL_STATE.currentTrack, action = {}) {
   if (action.type === actionTypes.SET_CURRENT_TRACK) {
     return action.payload;
@@ -44,7 +52,7 @@ function byIdReducer(state = INITIAL_STATE.comments.byId, action = {}) {
 
 function paginationReducer(
   state = INITIAL_STATE.comments.pagination,
-  action = {},
+  action = {}
 ) {
   if (action.type === actionTypes.SET_TRACK_COMMENTS) {
     return {
@@ -65,6 +73,7 @@ const reducer = combineReducers({
   entities: entitiesReducer,
   comments: commentsReducer,
   currentTrack: currentTrackReducer,
+  popular: popularReducer,
 });
 
 export default reducer;
