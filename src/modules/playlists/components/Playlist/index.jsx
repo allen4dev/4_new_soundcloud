@@ -23,7 +23,9 @@ const Playlist = props => {
 
       <div className="Playlist-description">
         <span className="Playlist-title truncate">{props.title}</span>
-        <Link to={`/users/${props.user.id}`} className="Playlist-author">
+        <Link
+          to={`/users/${props.user.id}/favorited`}
+          className="Playlist-author">
           {props.user.username}
         </Link>
       </div>

@@ -19,7 +19,7 @@ const ItemHeader = props => {
 
             <div className="ItemHeader-details">
               <Link
-                to={`/users/${props.user.id}`}
+                to={`/users/${props.user.id}/favorited`}
                 className="ItemHeader-author styledTag">
                 {props.user.username}
               </Link>

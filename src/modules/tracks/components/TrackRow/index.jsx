@@ -25,7 +25,9 @@ const TrackRow = props => {
           </div>
 
           <div className="TrackRow-description">
-            <Link to="/users/123" className="TrackRow-username">
+            <Link
+              to={`/users/${props.user.id}/favorited`}
+              className="TrackRow-username">
               {props.user.username}
             </Link>
             <Link to={`/tracks/${props.id}`} className="TrackRow-title">
