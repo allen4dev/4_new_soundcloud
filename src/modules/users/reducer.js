@@ -3,6 +3,16 @@ import { combineReducers } from 'redux';
 import * as actionTypes from './actionTypes';
 import { INITIAL_STATE } from './model';
 
+function currentUserReducer(state = INITIAL_STATE.currentUser, action = {}) {
+  switch (action.type) {
+    case actionTypes.SET_CURRENT_USER:
+      return action.payload;
+
+    default:
+      return state;
+  }
+}
+
 function entitiesReducer(state = INITIAL_STATE.entities, action = {}) {
   switch (action.type) {
     case actionTypes.FETCH_USERS_SUCCESS:
@@ -87,11 +97,13 @@ function createReducer(filter) {
 }
 
 const reducer = combineReducers({
+  currentUser: currentUserReducer,
   entities: entitiesReducer,
   followings: createReducer('followings'),
   followers: createReducer('followers'),
   playlists: createReducer('playlists'),
   tracks: createReducer('tracks'),
+  favorited: createReducer('favorited'),
 });
 
 export default reducer;

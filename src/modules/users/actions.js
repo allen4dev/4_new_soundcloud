@@ -21,6 +21,13 @@ export function setUser(response) {
   };
 }
 
+export function setCurrentUser(id) {
+  return {
+    type: actionTypes.SET_CURRENT_USER,
+    payload: id,
+  };
+}
+
 export function setResource(id, filter, result, nextPage) {
   return {
     type: actionTypes.SET_RESOURCES,
@@ -70,6 +77,8 @@ export function fetchUserFollowings(id) {
 
 export function fetchUserPlaylists(id) {
   return async (dispatch, getState) => {
+    dispatch(requestResource('playlists', id));
+
     const results = await api.users.getPlaylists(id);
     const response = playlists.model.normalizedPlaylists(results.collection);
 
@@ -82,21 +91,15 @@ export function fetchUserPlaylists(id) {
 
 export function fetchUserFollowers(id) {
   return async (dispatch, getState) => {
-    let results;
-    const nextPage = getState().users.followers.pagination[id];
+    dispatch(requestResource('followers', id));
 
-    if (nextPage) {
-      results = await api.users.getNextPage(nextPage);
-    } else {
-      results = await api.users.getFollowers(id);
-    }
-
+    const results = await api.users.getFollowers(id);
     const response = normalizedUsers(results.collection);
 
     dispatch(setUsers(response));
     dispatch(setResource(id, 'followers', response.result, results.next_href));
 
-    return response.entities.users;
+    return results.collection;
   };
 }
 
@@ -109,6 +112,20 @@ export function fetchUserTracks(id) {
 
     dispatch(tracks.actions.setTracks(response));
     dispatch(setResource(id, 'tracks', response.result, results.next_href));
+
+    return results.collection;
+  };
+}
+
+export function fetchUserFavorites(id) {
+  return async dispatch => {
+    dispatch(requestResource('favorited', id));
+
+    const results = await api.users.getFavoritesTracks(id);
+    const response = tracks.model.normalizedTracks(results.collection);
+
+    dispatch(tracks.actions.setTracks(response));
+    dispatch(setResource(id, 'favorited', response.result, results.next_href));
 
     return results.collection;
   };

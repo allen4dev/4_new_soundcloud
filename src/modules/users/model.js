@@ -13,6 +13,7 @@ export function normalizedUsers(results) {
 }
 
 export const INITIAL_STATE = {
+  currentUser: '198559542', // null by default
   entities: {},
   playlists: {
     byId: {},
@@ -30,6 +31,11 @@ export const INITIAL_STATE = {
     fetching: {},
   },
   tracks: {
+    byId: {},
+    pagination: {},
+    fetching: {},
+  },
+  favorited: {
     byId: {},
     pagination: {},
     fetching: {},

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Route } from 'react-router-dom';
 
 import Overview from './containers/Overview';
@@ -40,22 +40,20 @@ const items = [
   },
 ];
 
-export class Collection extends Component {
-  render() {
-    return (
-      <div className="Collection page">
-        <Menu items={items} />
+const Collection = () => {
+  return (
+    <div className="Collection page">
+      <Menu items={items} />
 
-        <div className="Collection-content">
-          <Route exact path="/me" component={Overview} />
-          <Route path="/me/tracks" component={Tracks} />
-          <Route path="/me/playlists" component={Playlists} />
-          <Route path="/me/followers" component={Followers} />
-          <Route path="/me/history" component={History} />
-        </div>
+      <div className="Collection-content">
+        <Route exact path="/me" component={Overview} />
+        <Route path="/me/tracks" component={Tracks} />
+        <Route path="/me/playlists" component={Playlists} />
+        <Route path="/me/followers" component={Followers} />
+        <Route path="/me/history" component={History} />
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default Collection;
