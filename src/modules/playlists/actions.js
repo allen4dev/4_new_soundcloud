@@ -59,3 +59,18 @@ export function fetchPlaylistTracks(id) {
     return response.entities.tracks;
   };
 }
+
+export function fetchPlaylistTracksNextPage(id) {
+  return async (dispatch, getState) => {
+    dispatch(requestPlaylistTracks(id));
+
+    const nextPage = getState().playlists.tracks.pagination[id];
+    const results = await api.playlists.getNextPage(nextPage);
+    const response = tracks.model.normalizedTracks(results.collection);
+
+    dispatch(tracks.actions.setTracks(response));
+    dispatch(setPlaylistTracks(id, response.result, results.next_href));
+
+    return results.collection;
+  };
+}

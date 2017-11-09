@@ -7,9 +7,13 @@ import ItemHeader from './../../shared/ItemHeader';
 import Feedback from './../../shared/Feedback';
 import Recommendations from './../../shared/Recommendations';
 
+import InfiniteScroll from './../../HOC/InfinityScroll';
+
 import playlists from './../../modules/playlists';
 
 import './index.css';
+
+const InfiniteTrackList = InfiniteScroll(TrackList);
 
 class PlaylistDetail extends Component {
   state = {
@@ -17,22 +21,39 @@ class PlaylistDetail extends Component {
   };
 
   async componentDidMount() {
-    const { playlist, fetchPlaylist, match } = this.props;
+    const {
+      playlist,
+      tracks,
+      fetchPlaylist,
+      fetchPlaylistTracks,
+      match,
+    } = this.props;
 
     if (!playlist) {
-      this.setState({ loading: true });
+      // this.setState({ loading: true });
       await fetchPlaylist(match.params.id);
+    }
+
+    if (tracks.length === 0) {
+      await fetchPlaylistTracks(match.params.id);
     }
 
     this.setState({ loading: false });
   }
+
+  searchNextTracks = async () => {
+    const { fetchPlaylistTracksNextPage, match } = this.props;
+
+    await fetchPlaylistTracksNextPage(match.params.id);
+  };
 
   render() {
     if (this.state.loading) {
       return <h1>Loading...</h1>;
     }
 
-    const { playlist } = this.props;
+    const { playlist, tracks, isFetching, hasNextPage } = this.props;
+
     const info = {
       created_at: playlist.created_at,
       purchase_url: playlist.purchase_url,
@@ -50,7 +71,12 @@ class PlaylistDetail extends Component {
 
         <section className="PlaylistDetail-content content">
           <Feedback info={info}>
-            <TrackList items={new Array(12).fill({})} />
+            <InfiniteTrackList
+              items={tracks}
+              isLoading={isFetching}
+              hasNextPage={hasNextPage}
+              onPaginatedSearch={this.searchNextTracks}
+            />
           </Feedback>
           <Recommendations />
         </section>
@@ -60,11 +86,22 @@ class PlaylistDetail extends Component {
 }
 
 function mapStateToProps(state, { match }) {
+  const ids = state.playlists.tracks.byId[match.params.id] || [];
+  const isFetching = state.playlists.tracks.fetching[match.params.id];
+  const hasNextPage = state.playlists.tracks.pagination[match.params.id]
+    ? true
+    : false;
+
   return {
+    isFetching,
+    hasNextPage,
     playlist: state.playlists.entities[match.params.id],
+    tracks: ids.map(id => state.tracks.entities[id]),
   };
 }
 
 export default connect(mapStateToProps, {
   fetchPlaylist: playlists.actions.fetchPlaylist,
+  fetchPlaylistTracks: playlists.actions.fetchPlaylistTracks,
+  fetchPlaylistTracksNextPage: playlists.actions.fetchPlaylistTracksNextPage,
 })(PlaylistDetail);

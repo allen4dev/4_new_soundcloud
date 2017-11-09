@@ -4,8 +4,8 @@ import defaultImage from './../../../../images/default_image.png';
 
 import './index.css';
 
-const Track = () => {
-  const src = defaultImage;
+const Track = props => {
+  const src = props.artwork_url || defaultImage;
 
   return (
     <li className="Track">
@@ -14,9 +14,9 @@ const Track = () => {
       </div>
 
       <div className="Track-description">
-        <span className="Track-name">Monochrome Rainbow</span>
+        <span className="Track-name">{props.title}</span>
         <span className="Track-duration">
-          <i className="Track-icon icon-play3" /> 4:24
+          <i className="Track-icon icon-play3" /> {props.duration}
         </span>
       </div>
     </li>

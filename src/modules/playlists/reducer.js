@@ -49,7 +49,7 @@ function fetchingReducer(state = INITIAL_STATE.tracks.fetching, action = {}) {
     case actionTypes.REQUEST_PLAYLIST_TRACKS:
       return {
         ...state,
-        [action.payload.id]: true,
+        [action.payload]: true,
       };
 
     case actionTypes.SET_PLAYLIST_TRACKS:
