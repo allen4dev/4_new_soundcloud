@@ -130,3 +130,35 @@ export function fetchUserFavorites(id) {
     return results.collection;
   };
 }
+
+export function fetchNextPlaylists(id) {
+  return async (dispatch, getState) => {
+    const filter = 'playlists';
+    dispatch(requestResource(filter, id));
+
+    const nextPage = getState().users[filter].pagination[id];
+    const results = await api.playlists.getNextPage(nextPage);
+    const response = playlists.model.normalizedPlaylists(results.collection);
+
+    dispatch(playlists.actions.setPlaylists(response));
+    dispatch(setResource(id, filter, response.result, results.next_href));
+
+    return results.collection;
+  };
+}
+
+export function fetchNextFollowers(id) {
+  return async (dispatch, getState) => {
+    const filter = 'followers';
+    dispatch(requestResource(filter, id));
+
+    const nextPage = getState().users[filter].pagination[id];
+    const results = await api.users.getNextPage(nextPage);
+    const response = normalizedUsers(results.collection);
+
+    dispatch(setUsers(response));
+    dispatch(setResource(id, filter, response.result, results.next_href));
+
+    return results.collection;
+  };
+}

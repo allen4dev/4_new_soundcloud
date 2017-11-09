@@ -12,7 +12,7 @@ const api = {
       return track;
     },
 
-    async searchByTerm(term, limit = 12) {
+    async searchByTerm(term, limit = 24) {
       const url = `${baseURL}/tracks?q=${term}&limit=${limit}&linked_partitioning=1&client_id=${CLIENT_ID}`;
       const response = await fetch(url);
       const results = await response.json();
@@ -27,7 +27,7 @@ const api = {
       return tracks;
     },
 
-    async getComments(id, limit = 10) {
+    async getComments(id, limit = 24) {
       const url = `${baseURL}/tracks/${id}/comments?&limit=${limit}&linked_partitioning=1&client_id=${CLIENT_ID}`;
       const response = await fetch(url);
       const results = await response.json();
@@ -71,7 +71,7 @@ const api = {
       return playlists;
     },
 
-    async getTracks(id, limit = 10) {
+    async getTracks(id, limit = 24) {
       const url = `${baseURL}/playlists/${id}/tracks?limit=${limit}&linked_partitioning=1&client_id=${CLIENT_ID}`;
       const response = await fetch(url);
       const results = await response.json();
@@ -90,7 +90,7 @@ const api = {
       return user;
     },
 
-    async searchByTerm(term, limit = 12) {
+    async searchByTerm(term, limit = 24) {
       const url = `${baseURL}/users?q=${term}&limit=${limit}&linked_partitioning=1&client_id=${CLIENT_ID}`;
       const response = await fetch(url);
       const results = await response.json();
@@ -105,7 +105,7 @@ const api = {
       return users;
     },
 
-    async getTracks(id, limit = 12) {
+    async getTracks(id, limit = 24) {
       const url = `${baseURL}/users/${id}/tracks?limit=${limit}&linked_partitioning=1&client_id=${CLIENT_ID}`;
       const response = await fetch(url);
       const results = await response.json();
@@ -113,7 +113,7 @@ const api = {
       return results;
     },
 
-    async getPlaylists(id, limit = 12) {
+    async getPlaylists(id, limit = 24) {
       const url = `${baseURL}/users/${id}/playlists?limit=${limit}&linked_partitioning=1&client_id=${CLIENT_ID}`;
       const response = await fetch(url);
       const results = await response.json();
@@ -121,7 +121,7 @@ const api = {
       return results;
     },
 
-    async getFollowings(id, limit = 12) {
+    async getFollowings(id, limit = 24) {
       const url = `${baseURL}/users/${id}/followings?limit=${limit}&linked_partitioning=1&client_id=${CLIENT_ID}`;
       const response = await fetch(url);
       const results = await response.json();
@@ -129,7 +129,7 @@ const api = {
       return results;
     },
 
-    async getFollowers(id, limit = 12) {
+    async getFollowers(id, limit = 24) {
       const url = `${baseURL}/users/${id}/followers?limit=${limit}&linked_partitioning=1&client_id=${CLIENT_ID}`;
       const response = await fetch(url);
       const results = await response.json();
@@ -137,7 +137,7 @@ const api = {
       return results;
     },
 
-    async getFavoritesTracks(id, limit = 12) {
+    async getFavoritesTracks(id, limit = 24) {
       const url = `${baseURL}/users/${id}/favorites?limit=${limit}&linked_partitioning=1&client_id=${CLIENT_ID}`;
       const response = await fetch(url);
       const results = await response.json();

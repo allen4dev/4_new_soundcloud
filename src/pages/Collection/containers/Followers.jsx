@@ -3,7 +3,11 @@ import { connect } from 'react-redux';
 
 import UserList from './../../../modules/users/components/UserList';
 
+import InfiniteScroll from './../../../HOC/InfinityScroll';
+
 import users from './../../../modules/users';
+
+const InfiniteUsers = InfiniteScroll(UserList);
 
 class Followers extends Component {
   async componentDidMount() {
@@ -14,12 +18,23 @@ class Followers extends Component {
     }
   }
 
+  searchNextPage = async () => {
+    const { id, fetchNextFollowers } = this.props;
+
+    await fetchNextFollowers(id);
+  };
+
   render() {
-    const { items } = this.props;
+    const { items, isFetching, hasNextPage } = this.props;
 
     return (
       <section className="Collection-followers">
-        <UserList items={items} />
+        <InfiniteUsers
+          items={items}
+          isLoading={isFetching}
+          hasNextPage={hasNextPage}
+          onPaginatedSearch={this.searchNextPage}
+        />
       </section>
     );
   }
@@ -27,14 +42,19 @@ class Followers extends Component {
 
 function mapStateToProps(state) {
   const id = state.users.currentUser;
+  const isFetching = state.users.followers.fetching[id];
+  const hasNextPage = state.users.followers.pagination[id] ? true : false;
   const followerIds = state.users.followers.byId[id] || [];
 
   return {
     id,
+    isFetching,
+    hasNextPage,
     items: followerIds.map(id => state.users.entities[id]),
   };
 }
 
 export default connect(mapStateToProps, {
   fetchUserFollowers: users.actions.fetchUserFollowers,
+  fetchNextFollowers: users.actions.fetchNextFollowers,
 })(Followers);

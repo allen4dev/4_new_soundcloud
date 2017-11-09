@@ -3,7 +3,11 @@ import { connect } from 'react-redux';
 
 import SetList from './../../../modules/playlists/components/SetList';
 
+import InfiniteScroll from './../../../HOC/InfinityScroll';
+
 import users from './../../../modules/users';
+
+const InfinitePlaylists = InfiniteScroll(SetList);
 
 class Playlists extends Component {
   async componentDidMount() {
@@ -14,12 +18,23 @@ class Playlists extends Component {
     }
   }
 
+  searchNextPage = async () => {
+    const { id, fetchNextPlaylists } = this.props;
+
+    await fetchNextPlaylists(id);
+  };
+
   render() {
-    const { items } = this.props;
+    const { items, isFetching, hasNextPage } = this.props;
 
     return (
       <section className="Collection-playlists">
-        <SetList items={items} />
+        <InfinitePlaylists
+          items={items}
+          isLoading={isFetching}
+          hasNextPage={hasNextPage}
+          onPaginatedSearch={this.searchNextPage}
+        />
       </section>
     );
   }
@@ -27,14 +42,19 @@ class Playlists extends Component {
 
 function mapStateToProps(state) {
   const id = state.users.currentUser;
+  const isFetching = state.users.playlists.fetching[id];
+  const hasNextPage = state.users.playlists.pagination[id] ? true : false;
   const playlistIds = state.users.playlists.byId[id] || [];
 
   return {
     id,
+    isFetching,
+    hasNextPage,
     items: playlistIds.map(id => state.playlists.entities[id]),
   };
 }
 
 export default connect(mapStateToProps, {
   fetchUserPlaylists: users.actions.fetchUserPlaylists,
+  fetchNextPlaylists: users.actions.fetchNextPlaylists,
 })(Playlists);

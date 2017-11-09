@@ -19,5 +19,8 @@ export const INITIAL_STATE = {
     pagination: {},
   },
   popular: [],
-  currentTrack: null,
+  playing: {
+    currentTrack: null,
+    list: [],
+  },
 };
