@@ -20,14 +20,24 @@
   justify-content: space-between;
 }
 
+.Track-actions {
+  display: flex;
+  align-items: center;
+}
+
+.Track-play {
+  background-color: transparent;
+  cursor: pointer;
+  border: none;
+  color: var(--gray);
+  font-size: var(--font-medium);
+  margin-right: var(--space-small);
+}
+
 .Track-name {
   color: var(--dark);
 }
 
 .Track-duration {
   color: var(--gray);
-}
-
-.Track-icon {
-  margin-right: var(--space-small);
 }

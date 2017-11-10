@@ -79,3 +79,16 @@
 .Miniplayer-author {
   color: var(--gray);
 }
+.Miniplayer-playlist {
+  position: absolute;
+  right: 0;
+  bottom: var(--size-miniplayer);
+}
+
+.Miniplayer-playlistButton {
+  border: none;
+  cursor: pointer;
+  font-size: var(--font-medium);
+  height: 48px;
+  width: 48px;
+}

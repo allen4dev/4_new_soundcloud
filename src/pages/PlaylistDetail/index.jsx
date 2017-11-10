@@ -10,6 +10,7 @@ import Recommendations from './../../shared/Recommendations';
 import InfiniteScroll from './../../HOC/InfinityScroll';
 
 import playlists from './../../modules/playlists';
+import tracks from './../../modules/tracks';
 
 import './index.css';
 
@@ -23,7 +24,7 @@ class PlaylistDetail extends Component {
   async componentDidMount() {
     const {
       playlist,
-      tracks,
+      items,
       fetchPlaylist,
       fetchPlaylistTracks,
       match,
@@ -34,7 +35,7 @@ class PlaylistDetail extends Component {
       await fetchPlaylist(match.params.id);
     }
 
-    if (tracks.length === 0) {
+    if (items.length === 0) {
       await fetchPlaylistTracks(match.params.id);
     }
 
@@ -47,12 +48,16 @@ class PlaylistDetail extends Component {
     await fetchPlaylistTracksNextPage(match.params.id);
   };
 
+  handlePlay = id => {
+    this.props.setCurrentTrack(id);
+  };
+
   render() {
     if (this.state.loading) {
       return <h1>Loading...</h1>;
     }
 
-    const { playlist, tracks, isFetching, hasNextPage } = this.props;
+    const { playlist, items, isFetching, hasNextPage } = this.props;
 
     const info = {
       created_at: playlist.created_at,
@@ -72,9 +77,10 @@ class PlaylistDetail extends Component {
         <section className="PlaylistDetail-content content">
           <Feedback info={info}>
             <InfiniteTrackList
-              items={tracks}
+              items={items}
               isLoading={isFetching}
               hasNextPage={hasNextPage}
+              handlePlay={this.handlePlay}
               onPaginatedSearch={this.searchNextTracks}
             />
           </Feedback>
@@ -96,7 +102,7 @@ function mapStateToProps(state, { match }) {
     isFetching,
     hasNextPage,
     playlist: state.playlists.entities[match.params.id],
-    tracks: ids.map(id => state.tracks.entities[id]),
+    items: ids.map(id => state.tracks.entities[id]),
   };
 }
 
@@ -104,4 +110,5 @@ export default connect(mapStateToProps, {
   fetchPlaylist: playlists.actions.fetchPlaylist,
   fetchPlaylistTracks: playlists.actions.fetchPlaylistTracks,
   fetchPlaylistTracksNextPage: playlists.actions.fetchPlaylistTracksNextPage,
+  setCurrentTrack: tracks.actions.setCurrentTrack,
 })(PlaylistDetail);

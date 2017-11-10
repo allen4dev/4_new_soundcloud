@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import MiniPlaylist from './containers/MiniPlaylist';
+
 import './index.css';
 
 import defaultImage from './../../images/default_image.png';
@@ -129,6 +131,16 @@ class Miniplayer extends Component {
             value={this.state.volume}
             onChange={this.handleRangeChange}
           />
+        </div>
+
+        <div className="Miniplayer-playlist">
+          <button
+            style={{ display: 'none' }}
+            className="Miniplayer-playlistButton">
+            <i className="icon-list-alt" />
+          </button>
+
+          <MiniPlaylist display="block" />
         </div>
       </div>
     );

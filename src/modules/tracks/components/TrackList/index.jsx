@@ -6,14 +6,16 @@ import List from './../../../../shared/List';
 
 import './index.css';
 
-function renderTrack(track) {
-  return <Track key={track.id} {...track} />;
+function renderTrack(handlePlay) {
+  return track => {
+    return <Track key={track.id} {...track} handlePlay={handlePlay} />;
+  };
 }
 
-const TrackList = ({ items }) => {
+const TrackList = ({ items, handlePlay }) => {
   return (
     <div className="TrackList">
-      <List items={items}>{renderTrack}</List>
+      <List items={items}>{renderTrack(handlePlay)}</List>
     </div>
   );
 };

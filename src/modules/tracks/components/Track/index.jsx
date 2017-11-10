@@ -15,9 +15,15 @@ const Track = props => {
 
       <div className="Track-description">
         <span className="Track-name">{props.title}</span>
-        <span className="Track-duration">
-          <i className="Track-icon icon-play3" /> {props.duration}
-        </span>
+        <div className="Track-actions">
+          <button
+            className="Track-play"
+            onClick={() => props.handlePlay(props.id)}>
+            <i className="Track-icon icon-play3" />
+          </button>
+
+          <span className="Track-duration">{props.duration}</span>
+        </div>
       </div>
     </li>
   );
