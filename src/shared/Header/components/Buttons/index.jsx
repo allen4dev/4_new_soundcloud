@@ -1,12 +1,17 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import './index.css';
 
 const Buttons = () => {
   return (
     <div className="Header-buttons">
-      <button className="Header-button btn">Signin</button>
-      <button className="Header-button btn">Signup</button>
+      <Link to="/join/signin" className="Header-button btn">
+        Signin
+      </Link>
+      <Link to="/join/signup" className="Header-button btn">
+        Signup
+      </Link>
     </div>
   );
 };

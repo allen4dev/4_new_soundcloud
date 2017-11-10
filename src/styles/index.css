@@ -1,6 +1,7 @@
 @import './icons.css';
 @import './theme.css';
 @import './helpers.css';
+@import './player.css';
 
 * {
   box-sizing: border-box;
