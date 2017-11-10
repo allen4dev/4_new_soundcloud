@@ -6,6 +6,7 @@ import TrackRowList from './../../../modules/tracks/components/TrackRowList';
 import InfiniteScroll from './../../../HOC/InfinityScroll';
 
 import search from './../../../modules/search';
+import tracks from './../../../modules/tracks';
 
 const InfiniteTracks = InfiniteScroll(TrackRowList);
 
@@ -37,6 +38,10 @@ class Tracks extends Component {
     await searchTracksNextPage();
   };
 
+  handlePlay = id => {
+    this.props.setCurrentTrack(id);
+  };
+
   render() {
     return (
       <section className="Tracks">
@@ -44,6 +49,7 @@ class Tracks extends Component {
           items={this.props.items}
           isLoading={this.props.isFetching}
           hasNextPage={this.props.hasNextPage}
+          handlePlay={this.handlePlay}
           onPaginatedSearch={this.searchNextTracks}
         />
       </section>
@@ -65,6 +71,7 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, {
+  setCurrentTrack: tracks.actions.setCurrentTrack,
   searchTracks: search.actions.searchTracks,
   searchTracksNextPage: search.actions.searchTracksNextPage,
 })(Tracks);

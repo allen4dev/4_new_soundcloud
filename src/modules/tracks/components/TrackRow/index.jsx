@@ -19,7 +19,9 @@ const TrackRow = props => {
       <div className="TrackRow-body">
         <div className="TrackRow-header">
           <div className="TrackRow-play">
-            <button className="TrackRow-button btn-play">
+            <button
+              className="TrackRow-button btn-play"
+              onClick={() => props.handlePlay(props.id)}>
               <i className="icon-play3" />
             </button>
           </div>
