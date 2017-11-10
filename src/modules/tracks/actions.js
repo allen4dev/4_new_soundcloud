@@ -41,6 +41,13 @@ export function addToTracklist(id) {
   };
 }
 
+export function removeFromTracklist(id) {
+  return {
+    type: actionTypes.REMOVE_FROM_TRACKLIST,
+    payload: id,
+  };
+}
+
 export function setPopularTracks(result) {
   return {
     type: actionTypes.SET_POPULAR_TRACKS,

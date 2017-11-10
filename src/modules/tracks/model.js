@@ -23,4 +23,5 @@ export const INITIAL_STATE = {
     currentTrack: null,
     list: [],
   },
+  history: [],
 };

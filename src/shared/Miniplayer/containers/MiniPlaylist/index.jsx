@@ -15,11 +15,23 @@ class MiniPlaylist extends Component {
       return <span className="">Empty tracklist</span>;
     }
 
-    return <TrackList items={tracks} handlePlay={this.handlePlay} />;
+    return (
+      <TrackList
+        items={tracks}
+        handlePlay={this.handlePlay}
+        handleRemove={this.handleRemove}
+      />
+    );
   }
 
   handlePlay = id => {
     this.props.setCurrentTrack(id);
+  };
+
+  handleRemove = id => {
+    const { removeFromTracklist } = this.props;
+
+    removeFromTracklist(id);
   };
 
   render() {
@@ -55,4 +67,5 @@ function mapStateToProps(state) {
 
 export default connect(mapStateToProps, {
   setCurrentTrack: tracks.actions.setCurrentTrack,
+  removeFromTracklist: tracks.actions.removeFromTracklist,
 })(MiniPlaylist);

@@ -4,6 +4,22 @@ import defaultImage from './../../../../images/default_image.png';
 
 import './index.css';
 
+function renderButton({ id, handleAdd, handleRemove }) {
+  if (handleRemove) {
+    return (
+      <button className="Track-button" onClick={() => handleRemove(id)}>
+        <i className="Track-icon icon-cross" />
+      </button>
+    );
+  }
+
+  return (
+    <button className="Track-button" onClick={() => handleAdd(id)}>
+      <i className="Track-icon icon-plus" />
+    </button>
+  );
+}
+
 const Track = props => {
   const src = props.artwork_url || defaultImage;
 
@@ -16,6 +32,8 @@ const Track = props => {
       <div className="Track-description">
         <span className="Track-name">{props.title}</span>
         <div className="Track-actions">
+          {renderButton(props)}
+
           <button
             className="Track-button"
             onClick={() => props.handlePlay(props.id)}>

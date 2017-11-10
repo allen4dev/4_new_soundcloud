@@ -89,6 +89,14 @@ function listReducer(state = INITIAL_STATE.playing.list, action = {}) {
   }
 }
 
+function historyReducer(state = INITIAL_STATE.history, action = {}) {
+  if (action.type === actionTypes.SET_CURRENT_TRACK) {
+    return [...state, action.payload];
+  }
+
+  return state;
+}
+
 const commentsReducer = combineReducers({
   byId: byIdReducer,
   pagination: paginationReducer,
@@ -105,6 +113,7 @@ const reducer = combineReducers({
   comments: commentsReducer,
   currentTrack: currentTrackReducer,
   popular: popularReducer,
+  history: historyReducer,
 });
 
 export default reducer;

@@ -52,6 +52,14 @@ class PlaylistDetail extends Component {
     this.props.setCurrentTrack(id);
   };
 
+  handleAdd = id => {
+    const { tracklist, addToTracklist } = this.props;
+    const isInPlaylist = tracklist.findIndex(trackId => trackId === id);
+    if (isInPlaylist === -1) {
+      addToTracklist(id);
+    }
+  };
+
   render() {
     if (this.state.loading) {
       return <h1>Loading...</h1>;
@@ -81,6 +89,7 @@ class PlaylistDetail extends Component {
               isLoading={isFetching}
               hasNextPage={hasNextPage}
               handlePlay={this.handlePlay}
+              handleAdd={this.handleAdd}
               onPaginatedSearch={this.searchNextTracks}
             />
           </Feedback>
@@ -101,6 +110,7 @@ function mapStateToProps(state, { match }) {
   return {
     isFetching,
     hasNextPage,
+    tracklist: state.tracks.playing.list,
     playlist: state.playlists.entities[match.params.id],
     items: ids.map(id => state.tracks.entities[id]),
   };
@@ -111,4 +121,5 @@ export default connect(mapStateToProps, {
   fetchPlaylistTracks: playlists.actions.fetchPlaylistTracks,
   fetchPlaylistTracksNextPage: playlists.actions.fetchPlaylistTracksNextPage,
   setCurrentTrack: tracks.actions.setCurrentTrack,
+  addToTracklist: tracks.actions.addToTracklist,
 })(PlaylistDetail);
