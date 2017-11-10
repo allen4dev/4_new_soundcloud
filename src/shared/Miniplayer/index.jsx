@@ -3,9 +3,10 @@ import { connect } from 'react-redux';
 
 import MiniPlaylist from './containers/MiniPlaylist';
 
-import './index.css';
+import tracks from './../../modules/tracks';
 
 import defaultImage from './../../images/default_image.png';
+import './index.css';
 
 // refactor: add the CID at time of fetch
 const clientID = process.env.REACT_APP_SC_CLIENT_ID;
@@ -24,10 +25,20 @@ class Miniplayer extends Component {
   };
 
   onEnded = () => {
-    this.setState({
-      paused: true,
-      progress: '0%',
-    });
+    const { list, currentTrack, setCurrentTrack } = this.props;
+    const index = list.findIndex(id => id === currentTrack);
+
+    if (index !== -1 && list.length - 1 !== index) {
+      const nextTrack = list[index + 1];
+
+      setCurrentTrack(nextTrack);
+      // this.audio.play();
+    } else {
+      this.setState({
+        paused: true,
+        progress: '0%',
+      });
+    }
   };
 
   onTimeUpdate = e => {
@@ -160,8 +171,12 @@ function mapStateToProps(state) {
   const currentTrack = state.tracks.currentTrack;
 
   return {
+    currentTrack,
+    list: state.tracks.playing.list,
     track: state.tracks.entities[currentTrack],
   };
 }
 
-export default connect(mapStateToProps)(Miniplayer);
+export default connect(mapStateToProps, {
+  setCurrentTrack: tracks.actions.setCurrentTrack,
+})(Miniplayer);

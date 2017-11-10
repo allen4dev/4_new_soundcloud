@@ -6,6 +6,8 @@ import List from './../../../../shared/List';
 
 import './index.css';
 
+// Refactor: Instead of use the handlePlay and handleAdd with props
+// take the dispatch, and dispatch the actions in the Track component
 function renderTrack(handlePlay) {
   return track => {
     return <Track key={track.id} {...track} handlePlay={handlePlay} />;

@@ -24,6 +24,12 @@ const TrackRow = props => {
               onClick={() => props.handlePlay(props.id)}>
               <i className="icon-play3" />
             </button>
+
+            <button
+              className="TrackRow-button btn btn-flat"
+              onClick={() => props.handleAdd(props.id)}>
+              <i className="icon-plus" />
+            </button>
           </div>
 
           <div className="TrackRow-description">
@@ -32,7 +38,9 @@ const TrackRow = props => {
               className="TrackRow-username">
               {props.user.username}
             </Link>
-            <Link to={`/tracks/${props.id}`} className="TrackRow-title">
+            <Link
+              to={`/tracks/${props.id}`}
+              className="TrackRow-title truncate">
               {props.title}
             </Link>
           </div>

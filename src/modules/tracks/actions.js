@@ -20,6 +20,13 @@ export function setTrack(response) {
   };
 }
 
+export function setTrackComments(id, result, nextPage) {
+  return {
+    type: actionTypes.SET_TRACK_COMMENTS,
+    payload: { id, result, nextPage },
+  };
+}
+
 export function setCurrentTrack(id) {
   return {
     type: actionTypes.SET_CURRENT_TRACK,
@@ -27,10 +34,10 @@ export function setCurrentTrack(id) {
   };
 }
 
-export function setTrackComments(id, result, nextPage) {
+export function addToTracklist(id) {
   return {
-    type: actionTypes.SET_TRACK_COMMENTS,
-    payload: { id, result, nextPage },
+    type: actionTypes.ADD_TO_TRACKLIST,
+    payload: id,
   };
 }
 

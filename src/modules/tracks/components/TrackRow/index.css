@@ -31,12 +31,17 @@
 }
 
 .TrackRow-play {
-  margin-right: var(--space-small);
+  /* margin-right: var(--space-small); */
+}
+
+.TrackRow-button {
+  margin-right: var(--space-normal);
 }
 
 .TrackRow-description {
   display: flex;
   flex-direction: column;
+  width: 80%;
 }
 
 .TrackRow-username,

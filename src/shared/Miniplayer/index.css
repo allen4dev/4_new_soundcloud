@@ -80,8 +80,9 @@
   color: var(--gray);
 }
 .Miniplayer-playlist {
+  width: 37%;
   position: absolute;
-  right: 0;
+  right: 5px;
   bottom: var(--size-miniplayer);
 }
 

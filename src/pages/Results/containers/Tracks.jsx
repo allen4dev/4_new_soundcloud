@@ -42,6 +42,14 @@ class Tracks extends Component {
     this.props.setCurrentTrack(id);
   };
 
+  handleAdd = id => {
+    const { tracklist } = this.props;
+    const isInPlaylist = tracklist.findIndex(trackId => trackId === id);
+    if (isInPlaylist === -1) {
+      this.props.addToTracklist(id);
+    }
+  };
+
   render() {
     return (
       <section className="Tracks">
@@ -50,6 +58,7 @@ class Tracks extends Component {
           isLoading={this.props.isFetching}
           hasNextPage={this.props.hasNextPage}
           handlePlay={this.handlePlay}
+          handleAdd={this.handleAdd}
           onPaginatedSearch={this.searchNextTracks}
         />
       </section>
@@ -65,6 +74,7 @@ function mapStateToProps(state) {
   return {
     isFetching,
     hasNextPage,
+    tracklist: state.tracks.playing.list,
     query: state.search.query,
     items: ids.map(id => state.tracks.entities[id]),
   };
@@ -72,6 +82,7 @@ function mapStateToProps(state) {
 
 export default connect(mapStateToProps, {
   setCurrentTrack: tracks.actions.setCurrentTrack,
+  addToTracklist: tracks.actions.addToTracklist,
   searchTracks: search.actions.searchTracks,
   searchTracksNextPage: search.actions.searchTracksNextPage,
 })(Tracks);

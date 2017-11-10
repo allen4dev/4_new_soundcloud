@@ -10,14 +10,14 @@ const Track = props => {
   return (
     <li className="Track">
       <div className="Track-photo imageContainer">
-        <img src={src} alt="Monochrome Rainbow" className="Track-image image" />
+        <img src={src} alt={props.title} className="Track-image image" />
       </div>
 
       <div className="Track-description">
         <span className="Track-name">{props.title}</span>
         <div className="Track-actions">
           <button
-            className="Track-play"
+            className="Track-button"
             onClick={() => props.handlePlay(props.id)}>
             <i className="Track-icon icon-play3" />
           </button>
