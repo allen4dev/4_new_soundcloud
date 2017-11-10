@@ -16,6 +16,7 @@ class Miniplayer extends Component {
     paused: true,
     progress: '0%',
     volume: '0.5',
+    show: false,
   };
 
   onPlay = () => {
@@ -97,12 +98,21 @@ class Miniplayer extends Component {
     }
   };
 
+  openPlaylist = () => {
+    this.setState({ show: true });
+  };
+
+  closePlaylist = () => {
+    this.setState({ show: false });
+  };
+
   render() {
     const { track } = this.props;
     const src = track.artwork_url || defaultImage;
     const streamURL = `${track.stream_url}?client_id=${clientID}`;
 
     const icon = this.state.paused ? 'icon-play3' : 'icon-pause2';
+    const showButton = this.state.show ? 'none' : 'block';
 
     return (
       <div className="Miniplayer">
@@ -170,12 +180,13 @@ class Miniplayer extends Component {
 
         <div className="Miniplayer-playlist">
           <button
-            style={{ display: 'none' }}
-            className="Miniplayer-playlistButton">
+            style={{ display: showButton }}
+            className="Miniplayer-playlistButton"
+            onClick={this.openPlaylist}>
             <i className="icon-list-alt" />
           </button>
 
-          <MiniPlaylist display="block" />
+          {this.state.show && <MiniPlaylist handleClose={this.closePlaylist} />}
         </div>
       </div>
     );

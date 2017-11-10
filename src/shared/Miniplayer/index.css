@@ -82,7 +82,7 @@
 .Miniplayer-playlist {
   width: 37%;
   position: absolute;
-  right: 5px;
+  right: 0;
   bottom: var(--size-miniplayer);
 }
 
@@ -92,4 +92,11 @@
   font-size: var(--font-medium);
   height: 48px;
   width: 48px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.Miniplayer-playlistButton:hover {
+  background-color: var(--light-gray);
 }

@@ -8,6 +8,8 @@ import tracks from './../../../../modules/tracks';
 import './index.css';
 
 class MiniPlaylist extends Component {
+  // Refactor: Implement shouldComponentUpdate
+
   renderTracks(tracks) {
     if (tracks.length === 0) {
       return <span className="">Empty tracklist</span>;
@@ -29,7 +31,9 @@ class MiniPlaylist extends Component {
           <h4 className="Miniplaylist-title">A continuacion:</h4>
           <div className="Miniplaylist-actions">
             <button className="Miniplaylist-drop">Borrar</button>
-            <button className="Miniplaylist-close btn">
+            <button
+              className="Miniplaylist-close btn"
+              onClick={this.props.handleClose}>
               <i className="Miniplaylist-icon icon-cross" />
             </button>
           </div>
