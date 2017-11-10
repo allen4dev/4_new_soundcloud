@@ -73,6 +73,30 @@ class Miniplayer extends Component {
     });
   };
 
+  handlePrevTrack = () => {
+    console.log('prev');
+    const { currentTrack, list, setCurrentTrack } = this.props;
+    const index = list.findIndex(id => id === currentTrack);
+
+    // Refactor: Make a function that checks the index
+    if (index > 0) {
+      const nextTrack = list[index - 1];
+      setCurrentTrack(nextTrack);
+    }
+  };
+
+  // Refactor: Both are really equals
+  handleNextTrack = () => {
+    console.log('next');
+    const { currentTrack, list, setCurrentTrack } = this.props;
+    const index = list.findIndex(id => id === currentTrack);
+
+    if (index !== -1 && list.length - 1 !== index) {
+      const nextTrack = list[index + 1];
+      setCurrentTrack(nextTrack);
+    }
+  };
+
   render() {
     const { track } = this.props;
     const src = track.artwork_url || defaultImage;
@@ -94,13 +118,13 @@ class Miniplayer extends Component {
         />
 
         <div className="Miniplayer-buttonGroup">
-          <button className="Miniplayer-button">
+          <button className="Miniplayer-button" onClick={this.handlePrevTrack}>
             <i className="Miniplayer-icon icon-backward2" />
           </button>
           <button className="Miniplayer-button" onClick={this.handleToggle}>
             <i className={`Miniplayer-icon ${icon}`} />
           </button>
-          <button className="Miniplayer-button">
+          <button className="Miniplayer-button" onClick={this.handleNextTrack}>
             <i className="Miniplayer-icon icon-forward3" />
           </button>
         </div>
