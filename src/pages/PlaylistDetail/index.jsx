@@ -49,6 +49,7 @@ class PlaylistDetail extends Component {
   };
 
   handlePlay = id => {
+    // Refactor: Dont dispatch if the track currently exists
     this.props.setCurrentTrack(id);
   };
 

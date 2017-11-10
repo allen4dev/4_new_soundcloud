@@ -10,10 +10,12 @@ export class History extends Component {
           Escucha las pista que has reproducido:
         </h3>
 
-        <TrackRowList items={new Array(12).fill({})} />
+        <span>No tracks listened</span>
       </section>
     );
   }
 }
+
+/* <TrackRowList items={new Array(12).fill({})} /> */
 
 export default History;

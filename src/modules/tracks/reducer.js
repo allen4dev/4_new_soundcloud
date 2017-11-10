@@ -91,10 +91,20 @@ function listReducer(state = INITIAL_STATE.playing.list, action = {}) {
 
 function historyReducer(state = INITIAL_STATE.history, action = {}) {
   if (action.type === actionTypes.SET_CURRENT_TRACK) {
-    return [...state, action.payload];
+    return createHistory(state, action.payload);
   }
 
   return state;
+}
+
+function createHistory(state, id) {
+  const exists = state.findIndex(trackId => trackId === id);
+
+  if (exists !== -1) {
+    return state;
+  }
+
+  return [...state, id];
 }
 
 const commentsReducer = combineReducers({
