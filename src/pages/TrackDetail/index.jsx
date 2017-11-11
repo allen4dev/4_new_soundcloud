@@ -52,7 +52,13 @@ class TrackDetail extends Component {
             <div className="Progress-filled">Put progress here</div>
           </div>
         </ItemHeader>
-        <Content info={info} comments={this.props.comments} />
+
+        <Content
+          info={info}
+          comments={this.props.comments}
+          term={track.title}
+          id={track.id}
+        />
       </section>
     );
   }

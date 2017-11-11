@@ -24,4 +24,5 @@ export const INITIAL_STATE = {
     list: [],
   },
   history: [],
+  related: {},
 };

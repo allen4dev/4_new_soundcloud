@@ -3,6 +3,16 @@ import { combineReducers } from 'redux';
 import * as actionTypes from './actionTypes';
 import { INITIAL_STATE } from './model';
 
+function createHistory(state, id) {
+  const exists = state.findIndex(trackId => trackId === id);
+
+  if (exists !== -1) {
+    return state;
+  }
+
+  return [...state, id];
+}
+
 function entitiesReducer(state = INITIAL_STATE.entities, action = {}) {
   switch (action.type) {
     // Refactor: can use the same FETCH_TRACKS_SUCCESS
@@ -44,7 +54,7 @@ function byIdReducer(state = INITIAL_STATE.comments.byId, action = {}) {
 
 function paginationReducer(
   state = INITIAL_STATE.comments.pagination,
-  action = {},
+  action = {}
 ) {
   if (action.type === actionTypes.SET_TRACK_COMMENTS) {
     return {
@@ -58,7 +68,7 @@ function paginationReducer(
 
 function currentTrackReducer(
   state = INITIAL_STATE.playing.currentTrack,
-  action = {},
+  action = {}
 ) {
   switch (action.type) {
     case actionTypes.SET_CURRENT_TRACK:
@@ -97,14 +107,15 @@ function historyReducer(state = INITIAL_STATE.history, action = {}) {
   return state;
 }
 
-function createHistory(state, id) {
-  const exists = state.findIndex(trackId => trackId === id);
-
-  if (exists !== -1) {
-    return state;
+function relatedReducer(state = INITIAL_STATE.related, action = {}) {
+  if (action.type === actionTypes.SET_RELATED_TRACKS) {
+    return {
+      ...state,
+      [action.payload.id]: action.payload.result,
+    };
   }
 
-  return [...state, id];
+  return state;
 }
 
 const commentsReducer = combineReducers({
@@ -124,6 +135,7 @@ const reducer = combineReducers({
   currentTrack: currentTrackReducer,
   popular: popularReducer,
   history: historyReducer,
+  related: relatedReducer,
 });
 
 export default reducer;

@@ -55,6 +55,13 @@ export function setPopularTracks(result) {
   };
 }
 
+export function setRelatedTracks(id, result) {
+  return {
+    type: actionTypes.SET_RELATED_TRACKS,
+    payload: { id, result },
+  };
+}
+
 // Async actions
 export function fetchTrack(id) {
   return async dispatch => {
@@ -86,6 +93,18 @@ export function fetchPopularTracks() {
 
     dispatch(setTracks(response));
     dispatch(setPopularTracks(response.result));
+
+    return results.collection;
+  };
+}
+
+export function fetchRelatedTracks(id, term) {
+  return async dispatch => {
+    const results = await api.tracks.searchByTerm(term, 15);
+    const response = normalizedTracks(results.collection);
+
+    dispatch(setTracks(response));
+    dispatch(setRelatedTracks(id, response.result));
 
     return results.collection;
   };

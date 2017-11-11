@@ -10,7 +10,7 @@ const Content = props => {
   return (
     <div className="TrackDetail-content">
       <Info {...props} />
-      <Recommendations />
+      <Recommendations term={props.term} id={props.id} />
     </div>
   );
 };
