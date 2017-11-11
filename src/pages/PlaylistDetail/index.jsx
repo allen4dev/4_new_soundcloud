@@ -94,7 +94,7 @@ class PlaylistDetail extends Component {
               onPaginatedSearch={this.searchNextTracks}
             />
           </Feedback>
-          <Recommendations />
+          <Recommendations id={playlist.id} term={playlist.title} />
         </section>
       </div>
     );
