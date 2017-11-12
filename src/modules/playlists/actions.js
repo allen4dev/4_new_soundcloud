@@ -1,5 +1,5 @@
 import * as actionTypes from './actionTypes';
-import { normalizedPlaylist } from './model';
+import { normalizedPlaylist, normalizedPlaylists } from './model';
 
 import api from './../../utils/api';
 
@@ -13,12 +13,12 @@ export function setPlaylists(response) {
   };
 }
 
-// export function setPlaylist(response) {
-//   return {
-//     type: actionTypes.FETCH_PLAYLIST_SUCCESS,
-//     response,
-//   }
-// }
+export function setRelatedPlaylists(id, result) {
+  return {
+    type: actionTypes.SET_RELATED_PLAYLISTS,
+    payload: { id, result },
+  };
+}
 
 export function setPlaylistTracks(id, trackIds, nextPage) {
   return {
@@ -70,6 +70,18 @@ export function fetchPlaylistTracksNextPage(id) {
 
     dispatch(tracks.actions.setTracks(response));
     dispatch(setPlaylistTracks(id, response.result, results.next_href));
+
+    return results.collection;
+  };
+}
+
+export function fetchRelatedPlaylists(id, term) {
+  return async dispatch => {
+    const results = await api.playlists.searchByTerm(term, 10);
+    const response = normalizedPlaylists(results.collection);
+
+    dispatch(setPlaylists(response));
+    dispatch(setRelatedPlaylists(id, response.result));
 
     return results.collection;
   };

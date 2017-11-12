@@ -22,21 +22,28 @@ class PlaylistDetail extends Component {
   };
 
   async componentDidMount() {
+    let { playlist } = this.props;
+
     const {
-      playlist,
       items,
+      related,
       fetchPlaylist,
       fetchPlaylistTracks,
+      fetchRelatedPlaylists,
       match,
     } = this.props;
 
     if (!playlist) {
       // this.setState({ loading: true });
-      await fetchPlaylist(match.params.id);
+      playlist = await fetchPlaylist(match.params.id);
     }
 
     if (items.length === 0) {
       await fetchPlaylistTracks(match.params.id);
+    }
+
+    if (related.length === 0) {
+      await fetchRelatedPlaylists(match.params.id, playlist.title);
     }
 
     this.setState({ loading: false });
@@ -73,6 +80,7 @@ class PlaylistDetail extends Component {
       purchase_url: playlist.purchase_url,
     };
 
+    //  Refactor: Create a PlaylistRowList
     return (
       <div className="PlaylistDetail page">
         <ItemHeader {...playlist}>
@@ -94,7 +102,9 @@ class PlaylistDetail extends Component {
               onPaginatedSearch={this.searchNextTracks}
             />
           </Feedback>
-          <Recommendations id={playlist.id} term={playlist.title} />
+          <Recommendations>
+            <TrackList items={this.props.related} />
+          </Recommendations>
         </section>
       </div>
     );
@@ -107,6 +117,7 @@ function mapStateToProps(state, { match }) {
   const hasNextPage = state.playlists.tracks.pagination[match.params.id]
     ? true
     : false;
+  const relatedIds = state.playlists.related[match.params.id] || [];
 
   return {
     isFetching,
@@ -114,6 +125,7 @@ function mapStateToProps(state, { match }) {
     tracklist: state.tracks.playing.list,
     playlist: state.playlists.entities[match.params.id],
     items: ids.map(id => state.tracks.entities[id]),
+    related: relatedIds.map(id => state.playlists.entities[id]),
   };
 }
 
@@ -121,6 +133,7 @@ export default connect(mapStateToProps, {
   fetchPlaylist: playlists.actions.fetchPlaylist,
   fetchPlaylistTracks: playlists.actions.fetchPlaylistTracks,
   fetchPlaylistTracksNextPage: playlists.actions.fetchPlaylistTracksNextPage,
+  fetchRelatedPlaylists: playlists.actions.fetchRelatedPlaylists,
   setCurrentTrack: tracks.actions.setCurrentTrack,
   addToTracklist: tracks.actions.addToTracklist,
 })(PlaylistDetail);

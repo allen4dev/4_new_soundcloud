@@ -32,7 +32,7 @@ function byIdReducer(state = INITIAL_STATE.tracks.byId, action = {}) {
 
 function paginationReducer(
   state = INITIAL_STATE.tracks.pagination,
-  action = {},
+  action = {}
 ) {
   if (action.type === actionTypes.SET_PLAYLIST_TRACKS) {
     return {
@@ -63,6 +63,17 @@ function fetchingReducer(state = INITIAL_STATE.tracks.fetching, action = {}) {
   }
 }
 
+function relatedReducer(state = INITIAL_STATE.related, action = {}) {
+  if (action.type === actionTypes.SET_RELATED_PLAYLISTS) {
+    return {
+      ...state,
+      [action.payload.id]: action.payload.result,
+    };
+  }
+
+  return state;
+}
+
 const tracksReducer = combineReducers({
   byId: byIdReducer,
   pagination: paginationReducer,
@@ -72,6 +83,7 @@ const tracksReducer = combineReducers({
 const reducer = combineReducers({
   entities: entitiesReducer,
   tracks: tracksReducer,
+  related: relatedReducer,
 });
 
 export default reducer;
