@@ -96,9 +96,21 @@ function createReducer(filter) {
   });
 }
 
+function relatedReducer(state = INITIAL_STATE.related, action = {}) {
+  if (action.type === actionTypes.SET_RELATED_USERS) {
+    return {
+      ...state,
+      [action.payload.id]: action.payload.result,
+    };
+  }
+
+  return state;
+}
+
 const reducer = combineReducers({
   currentUser: currentUserReducer,
   entities: entitiesReducer,
+  related: relatedReducer,
   followings: createReducer('followings'),
   followers: createReducer('followers'),
   playlists: createReducer('playlists'),

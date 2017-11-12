@@ -15,16 +15,20 @@ class TrackDetail extends Component {
   };
 
   async componentDidMount() {
-    const { track, comments, match } = this.props;
-
+    const { comments, related, match } = this.props;
+    let { track } = this.props;
     if (!track) {
-      await this.fetchData();
+      track = await this.fetchData();
     }
 
     if (comments.length === 0) {
       this.setState({ loading: true });
 
       await this.props.fetchTrackComments(match.params.id);
+    }
+
+    if (related.length === 0) {
+      await this.props.fetchRelatedTracks(match.params.id, track.title);
     }
 
     this.setState({ loading: false });
@@ -56,8 +60,7 @@ class TrackDetail extends Component {
         <Content
           info={info}
           comments={this.props.comments}
-          term={track.title}
-          id={track.id}
+          related={this.props.related}
         />
       </section>
     );
@@ -67,14 +70,17 @@ class TrackDetail extends Component {
 function mapStateToProps(state, { match }) {
   const id = match.params.id;
   const commentIds = state.tracks.comments.byId[id] || [];
+  const relatedIds = state.tracks.related[match.params.id] || [];
 
   return {
     track: state.tracks.entities[id],
     comments: commentIds.map(id => state.comments.entities[id]),
+    related: relatedIds.map(id => state.tracks.entities[id]),
   };
 }
 
 export default connect(mapStateToProps, {
   fetchTrack: tracks.actions.fetchTrack,
   fetchTrackComments: tracks.actions.fetchTrackComments,
+  fetchRelatedTracks: tracks.actions.fetchRelatedTracks,
 })(TrackDetail);

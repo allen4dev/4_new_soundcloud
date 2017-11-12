@@ -49,6 +49,13 @@ export function requestResource(filter, id) {
   };
 }
 
+export function setRelatedUsers(id, result) {
+  return {
+    type: actionTypes.SET_RELATED_USERS,
+    payload: { id, result },
+  };
+}
+
 // Async actions
 export function fetchUser(id) {
   return async dispatch => {
@@ -160,5 +167,17 @@ export function fetchNextFollowers(id) {
     dispatch(setResource(id, filter, response.result, results.next_href));
 
     return results.collection;
+  };
+}
+
+export function fetchRelatedUsers(id, term) {
+  return async dispatch => {
+    const results = await api.users.searchByTerm(term, 10);
+    const response = normalizedUsers(results.collection);
+
+    dispatch(setUsers(response));
+    dispatch(setRelatedUsers(id, response.result));
+
+    return response.collection;
   };
 }

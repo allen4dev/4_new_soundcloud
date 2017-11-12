@@ -1,5 +1,7 @@
 import React from 'react';
 
+import TrackList from './../../../../modules/tracks/components/TrackList';
+
 import Info from './../Info';
 
 import Recommendations from './../../../../shared/Recommendations';
@@ -10,7 +12,9 @@ const Content = props => {
   return (
     <div className="TrackDetail-content">
       <Info {...props} />
-      <Recommendations term={props.term} id={props.id} />
+      <Recommendations>
+        <TrackList items={props.related} />
+      </Recommendations>
     </div>
   );
 };

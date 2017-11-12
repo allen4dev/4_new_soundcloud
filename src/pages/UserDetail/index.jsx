@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import UserHeader from './../../modules/users/components/UserHeader';
+// import UserRowList from './../../modules/users/components/UserRowList';
 
 import UserInfo from './components/UserInfo';
 
@@ -13,10 +14,15 @@ import './index.css';
 
 class UserDetail extends Component {
   async componentDidMount() {
-    const { user, fetchUser, match } = this.props;
+    const { related, fetchUser, fetchRelatedUsers, match } = this.props;
+    let { user } = this.props;
 
     if (!user) {
-      await fetchUser(match.params.id);
+      user = await fetchUser(match.params.id);
+    }
+
+    if (related.length === 0) {
+      await fetchRelatedUsers(match.params.id, user.username);
     }
   }
 
@@ -26,7 +32,9 @@ class UserDetail extends Component {
         <UserHeader {...this.props.user} />
         <div className="UserDetail-content">
           <UserInfo uid={this.props.match.params.id} />
-          <Recommendations />
+          <Recommendations>
+            <span>Put a UserRowList here</span>
+          </Recommendations>
         </div>
       </div>
     );
@@ -34,11 +42,15 @@ class UserDetail extends Component {
 }
 
 function mapStateToProps(state, { match }) {
+  const relatedIds = state.users.related[match.params.id] || [];
+
   return {
     user: state.users.entities[match.params.id],
+    related: relatedIds.map(id => state.users.entities[id]),
   };
 }
 
 export default connect(mapStateToProps, {
   fetchUser: users.actions.fetchUser,
+  fetchRelatedUsers: users.actions.fetchRelatedUsers,
 })(UserDetail);

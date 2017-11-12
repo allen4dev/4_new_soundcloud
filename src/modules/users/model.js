@@ -40,4 +40,5 @@ export const INITIAL_STATE = {
     pagination: {},
     fetching: {},
   },
+  related: {},
 };
